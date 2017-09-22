@@ -1,0 +1,20 @@
+version: 2
+
+jobs:
+  check:
+    docker:
+      - image: node:8-stretch
+    steps:
+      - checkout
+      - run: apt-get update
+      - run: apt-get install -y libgtk-3-dev libgtkmm-3.0-dev libsigc++-2.0-dev
+      - run: npm install
+      - run: ./node_modules/.bin/lerna bootstrap
+      - run: ./node_modules/.bin/lerna run lint
+      - run: ./node_modules/.bin/lerna run test
+
+workflows:
+  version: 2
+  check_test_build:
+    jobs:
+      - check

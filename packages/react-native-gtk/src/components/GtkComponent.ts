@@ -34,7 +34,10 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget> {
     this.layout.insertChild(child.layout, this.layout.getChildCount());
   }
 
-  layoutChildren(): void {}
+  layoutChildren(): void {
+    // no-op
+    return undefined;
+  }
 
   private setProps(): void {
     for (const [key, value] of Object.entries(this.props)) {
@@ -45,7 +48,10 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget> {
     }
   }
 
-  setProp(prop: string, value: any) {}
+  setProp(prop: string, value: any): void {
+    // no-op
+    return undefined;
+  }
 
   private applyStyles(style: StyleAttribute) {
     flex(style, this.layout);

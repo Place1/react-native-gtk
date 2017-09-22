@@ -15,6 +15,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
+    "test": "echo 'todo write tests'",
     "example": "npm install && node examples/index.js",
     "install": "autogypi && npm run build",
     "build": "node-gyp configure build",

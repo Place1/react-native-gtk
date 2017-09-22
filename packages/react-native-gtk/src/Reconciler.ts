@@ -1,6 +1,8 @@
 import GtkContainer from './GtkContainer';
 import { createElement } from './components';
 import GtkComponent from './components/GtkComponent';
+
+// tslint:disable-next-line
 const ReactFiberReconciler = require('react-dom/lib/ReactFiberReconciler');
 
 // anthing in this file with this type
@@ -10,6 +12,7 @@ const ReactFiberReconciler = require('react-dom/lib/ReactFiberReconciler');
 // used and I'm yet to understand their meaning!
 type UNKNOWN_TYPE = any;
 
+// tslint:disable-next-line variable-name
 const Renderer = ReactFiberReconciler({
   createInstance(
     type: any,

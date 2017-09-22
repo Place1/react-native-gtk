@@ -16,7 +16,9 @@ export default class ViewComponent extends GtkComponent<gtk.Fixed> {
   }
 
   layoutChildren() {
-    this.layout.calculateLayout(); // TODO this should be called once per react render! not on every node that lays out children!
+    // TODO calculateLayout should be called once per react render!
+    // not on every node that lays out children!
+    this.layout.calculateLayout();
     for (const child of this.children) {
       const computedLayout = child.layout.getComputedLayout();
       this.node.move(child.node, computedLayout.left, computedLayout.top);
