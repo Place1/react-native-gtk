@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "jsx": "react",
+    "outDir": "dist",
+    "declaration": true
+  }
+}

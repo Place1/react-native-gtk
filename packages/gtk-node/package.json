@@ -1,0 +1,32 @@
+{
+  "name": "gtk-node",
+  "version": "0.0.1",
+  "description": "Nodejs bindings for GTK3",
+  "author": "James Batt",
+  "license": "",
+  "main": "src/index.js",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Place1/react-native-gtk"
+  },
+  "directories": {
+    "build": "build"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "example": "npm install && node examples/index.js",
+    "install": "autogypi && npm run build",
+    "build": "node-gyp configure build",
+    "clean": "rm -r ./build",
+    "autogypi": "autogypi",
+    "node-gyp": "node-gyp",
+    "ndts": "ndts"
+  },
+  "devDependencies": {
+    "autogypi": "0.2.2",
+    "nbind": "0.3.13",
+    "node-gyp": "3.6.2"
+  },
+  "typings": "src/types.d.ts"
+}

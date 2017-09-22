@@ -1,0 +1,35 @@
+{
+  "name": "react-native-gtk",
+  "version": "0.0.1",
+  "description": "react native for building desktop apps with GTK3",
+  "author": "James Batt",
+  "license": "",
+  "main": "dist/src/index.js",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Place1/react-native-gtk"
+  },
+  "directories": {
+    "dist": "dist"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "example": "ts-node example/index.tsx"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.28",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "react": "16.0.0-alpha.6",
+    "react-dom": "16.0.0-alpha.6",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "yoga-layout": "^1.6.0",
+    "gtk-node": "^0.0.1"
+  }
+}
