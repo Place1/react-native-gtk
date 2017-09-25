@@ -1,6 +1,6 @@
 {
   "name": "gtk-node",
-  "version": "0.0.1-prerelease.0",
+  "version": "0.0.1-prerelease.1",
   "description": "Nodejs bindings for GTK3",
   "author": "James Batt",
   "license": "",
