@@ -77,7 +77,7 @@ static GSource *uv_loop_source_new (uv_loop_t *loop) {
 }
 
 
-void EventLoop::start() {
+void EventLoop::start(Glib::RefPtr<Gtk::Application> app) {
     GSource *source = uv_loop_source_new (uv_default_loop ());
     g_source_attach (source, NULL);
 

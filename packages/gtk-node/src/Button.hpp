@@ -6,16 +6,15 @@
 #include "nbind/api.h"
 #include "./WidgetWrapper.hpp"
 
-using namespace std;
-
 class Button : public WidgetWrapper {
 private:
   Gtk::Button widget;
-  nbind::cbFunction *on_click_cb = NULL;
+  std::shared_ptr<nbind::cbFunction> on_click_cb;
 
 public:
   Button();
-  Button(string label);
+  Button(std::string label);
+  ~Button();
   Gtk::Button* get_widget();
   void on_click(nbind::cbFunction &cb);
 };

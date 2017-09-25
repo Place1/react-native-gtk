@@ -4,16 +4,16 @@
 #include <gtkmm.h>
 #include <string>
 #include "./Window.hpp"
-
-using namespace std;
+#include <stdio.h>
 
 class Application {
 private:
+  bool is_running = false;
   Glib::RefPtr<Gtk::Application> gtk_application;
 
 public:
   Application();
-  Application(string application_id);
+  Application(std::string application_id);
   void run(Window *window);
   void quit();
 };

@@ -1,7 +1,7 @@
 import GtkComponent from './GtkComponent';
 import * as gtk from 'gtk-node';
 
-export default class ButtonComponent extends GtkComponent {
+export default class ButtonComponent extends GtkComponent<gtk.Button> {
 
   node: gtk.Button;
 

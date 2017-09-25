@@ -91,7 +91,7 @@ void pollEvents(void* arg) {
   uv_close((uv_handle_t*) asyncCall, asyncClosed);
 }
 
-void EventLoop::start() {
+void EventLoop::start(Glib::RefPtr<Gtk::Application> app) {
   if (running) {
     return;
   }

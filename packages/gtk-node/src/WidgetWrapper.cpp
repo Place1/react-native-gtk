@@ -1,5 +1,5 @@
 #include "./WidgetWrapper.hpp"
-#include "nbind/nbind.h"
+#include "nbind/noconflict.h"
 
 WidgetWrapper::WidgetWrapper(Gtk::Widget *widgetHandle) {
   this->widget = widgetHandle;
@@ -14,6 +14,6 @@ void WidgetWrapper::set_size_request(int width, int height) {
 }
 
 NBIND_CLASS(WidgetWrapper) {
-  construct<Gtk::Widget*>();
-  method(set_size_request);
+  NBIND_CONSTRUCT<Gtk::Widget*>();
+  NBIND_METHOD(set_size_request);
 }

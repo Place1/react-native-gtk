@@ -19,6 +19,7 @@ declare module 'gtk-node' {
     set_title(title: string): void;
     set_default_size(width: int, height: int): void;
     on_close(callback: Function): void;
+    show_all(): void;
   }
 
   export class Fixed extends Widget {
