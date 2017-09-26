@@ -82,7 +82,10 @@ const Renderer = ReactFiberReconciler({
   commitUpdate(
     instance: GtkComponent,
     updatePayload: boolean,
-    type: UNKNOWN_TYPE, // this is the type of component. I'm not sure if it's ANY react component or just the raw GtkComponent's that we implement.
+    // this is the type of component.
+    // I'm not sure if it's ANY react component or
+    // just the raw GtkComponent's that we implement.
+    type: UNKNOWN_TYPE,
     oldProps: any,
     newProps: any,
     finishedWorkFiber: UNKNOWN_TYPE, // I think this is some internal React Fiber object

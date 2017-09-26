@@ -25,7 +25,6 @@
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
     "react": "16.0.0-alpha.6",
-    "react-dom": "16.0.0-alpha.6",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "tslint-react": "^3.2.0",
@@ -33,6 +32,10 @@
   },
   "dependencies": {
     "gtk-node": "^0.0.1-prerelease.2",
+    "react-dom": "16.0.0-alpha.6",
     "yoga-layout": "^1.6.0"
+  },
+  "peerDependencies": {
+    "react": "16.0.0-alpha.6"
   }
 }
