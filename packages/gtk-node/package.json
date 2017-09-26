@@ -18,16 +18,13 @@
     "test": "echo 'todo write tests'",
     "example": "npm install && node examples/index.js",
     "install": "autogypi && npm run build",
-    "build": "node-gyp configure build",
-    "clean": "rm -r ./build",
-    "autogypi": "autogypi",
-    "node-gyp": "node-gyp",
-    "ndts": "ndts"
+    "build": "node-gyp configure build && ndts . > build/types.d.ts",
+    "clean": "rm -r ./build"
   },
   "devDependencies": {
     "autogypi": "0.2.2",
     "nbind": "0.3.13",
     "node-gyp": "3.6.2"
   },
-  "typings": "src/types.d.ts"
+  "typings": "build/types.d.ts"
 }

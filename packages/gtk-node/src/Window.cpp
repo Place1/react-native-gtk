@@ -2,14 +2,12 @@
 #include <sigc++/sigc++.h>
 #include "nbind/noconflict.h"
 #include "./Window.hpp"
-#include "./WidgetWrapper.hpp"
 #include "./EventLoop.hpp"
-#include <stdio.h>
 
-Window::Window() : WidgetWrapper(&this->widget) {}
+Window::Window() : Container() {}
 
 Gtk::Window* Window::get_widget() {
-  return (Gtk::Window *)WidgetWrapper::get_widget();
+  return &this->widget;
 }
 
 void Window::set_title(std::string title) {
@@ -21,14 +19,6 @@ void Window::set_title(std::string title) {
 void Window::set_default_size(int width, int height) {
   EventLoop::exectute_on_gtk_loop([this, width, height]() {
     this->get_widget()->set_default_size(width, height);
-  });
-}
-
-void Window::add(WidgetWrapper *wrapper) {
-  printf("window::add\n");
-  EventLoop::exectute_on_gtk_loop([this, wrapper]() {
-    printf("gtk loop: window::add\n");
-    this->get_widget()->add(*wrapper->get_widget());
   });
 }
 
@@ -49,11 +39,10 @@ void Window::show_all() {
 }
 
 NBIND_CLASS(Window) {
-  NBIND_INHERIT(WidgetWrapper);
+  NBIND_INHERIT(Container);
   NBIND_CONSTRUCT<>();
   NBIND_METHOD(set_title);
   NBIND_METHOD(set_default_size);
-  NBIND_METHOD(add);
   NBIND_METHOD(on_close);
   NBIND_METHOD(show_all);
 }

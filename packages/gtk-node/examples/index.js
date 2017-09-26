@@ -5,8 +5,8 @@ let app = new gtk.Application('app.example');
 
 // Create a GTK window with a title and size
 let window = new gtk.Window();
-window.set_default_size(200, 200);
-window.set_title('My App');
+window.setDefaultSize(200, 200);
+window.setTitle('My App');
 
 // Create a GTK Fixed layout container
 // and put add it to the window
@@ -16,7 +16,7 @@ window.add(fixed);
 // add a button to the layout
 let button = new gtk.Button('Click me');
 let moved = false;
-button.on_click(() => {
+button.onClick(() => {
   console.log('I was clicked!');
   if (!moved) {
     fixed.move(button, 10, 10);
@@ -29,7 +29,7 @@ fixed.put(button, 0, 0);
 
 // when the window is closed let's make sure to
 // quit the GTK app!
-window.on_close(() => {
+window.onClose(() => {
   console.log('The window was closed! Quitting the app now!');
   app.quit();
 });

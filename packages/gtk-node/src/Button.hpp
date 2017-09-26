@@ -3,20 +3,19 @@
 
 #include <gtkmm.h>
 #include <string>
-#include "nbind/api.h"
-#include "./WidgetWrapper.hpp"
+#include "./AutoBindings/Events.hpp"
+#include "./Widget.hpp"
 
-class Button : public WidgetWrapper {
+class Button : public Widget {
+DEFINE_EVENT(onClick)
+
 private:
   Gtk::Button widget;
-  std::shared_ptr<nbind::cbFunction> on_click_cb;
 
 public:
   Button();
   Button(std::string label);
-  ~Button();
   Gtk::Button* get_widget();
-  void on_click(nbind::cbFunction &cb);
 };
 
 #endif

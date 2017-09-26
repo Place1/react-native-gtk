@@ -2,18 +2,17 @@
 #define FIXED_H
 
 #include <gtkmm.h>
-#include "./WidgetWrapper.hpp"
+#include "./Container.hpp"
 
-class Fixed : public WidgetWrapper {
+class Fixed : public Container {
 private:
   Gtk::Fixed widget;
 
 public:
   Fixed();
   Gtk::Fixed* get_widget();
-  void add(WidgetWrapper *widget);
-  void put(WidgetWrapper *widget, int x, int y);
-  void move(WidgetWrapper *widget, int x, int y);
+  void put(Widget *widget, int x, int y);
+  void move(Widget *widget, int x, int y);
 };
 
 #endif

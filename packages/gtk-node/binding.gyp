@@ -11,7 +11,8 @@
                 # "src/EventLoopNested.cpp",
                 "src/EventLoopMultithreaded.cpp",
                 "src/Button.cpp",
-                "src/WidgetWrapper.cpp",
+                "src/Widget.cpp",
+                "src/Container.cpp",
                 "src/Fixed.cpp",
             ],
             "cflags_cc": [
