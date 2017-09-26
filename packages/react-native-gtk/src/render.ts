@@ -12,7 +12,7 @@ export default function render(element: any) {
   // but we also need to unmount every react component
   // first, to allow devs a place to cleanup timers, async stuff
   // etc.
-  window.on_close(() => app.quit());
+  window.onClose(() => app.quit());
 
   // react inital render!
   const root = Renderer.createContainer(new GtkContainer(window));
