@@ -5,23 +5,13 @@ class App extends React.Component<{}, any> {
 
   state = {
     flexDirection: 'row',
+    buttonLabel: 'RNG button',
   };
 
   private interval: NodeJS.Timer | undefined;
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      const currentFlexDirection = this.state.flexDirection;
-      this.setState({
-        flexDirection: currentFlexDirection === 'row' ? 'column' : 'row',
-      });
-    }, 1000);
-  }
-
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
+    console.log('App unmounted!');
   }
 
   componentDidUpdate() {
@@ -42,9 +32,17 @@ class App extends React.Component<{}, any> {
     };
     return (
       <View style={viewStyle}>
-        <Button style={buttonSize} label="hello world!" />
-        <Button style={buttonSize} label="another button!" />
-        <Button style={buttonSize} label="and 1 more!" />
+        <Button
+          style={buttonSize}
+          label={this.state.buttonLabel}
+          onClick={() => this.setState({ buttonLabel: String(Math.random()) })}
+        />
+        <Button
+          style={buttonSize}
+          label="Flex Button"
+          onClick={() => this.setState({ flexDirection: this.state.flexDirection === 'row' ? 'column' : 'row' })}
+        />
+        <Button style={buttonSize} label="Hello world!" />
       </View>
     );
   }

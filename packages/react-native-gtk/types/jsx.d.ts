@@ -12,6 +12,7 @@ interface GtkAttributes {
 
 interface ButtonAttributes {
   label?: string;
+  onClick?(): void;
 }
 
 interface BoxAttributes {}

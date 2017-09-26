@@ -22,7 +22,7 @@ public:
   static void enqueue_js_loop(std::function<void (void)> f);
   static void enqueue_gtk_loop(std::function<void (void)> f);
 
-  template<typename T>
+  template<typename T = void>
   static T exectute_on_gtk_loop(std::function<T(void)> f); // TODO this should be a template method to return the result of the function as the future value
 };
 

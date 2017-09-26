@@ -3,12 +3,16 @@
 
 #include <gtkmm.h>
 #include <string>
-#include <memory>
 #include "./AutoBindings/Events.hpp"
+#include "./AutoBindings/Properties.hpp"
 #include "./Widget.hpp"
+
+using namespace std;
 
 class Button : public Widget {
 DEFINE_EVENT(onClick)
+DEFINE_GETTER(string, getLabel)
+DEFINE_SETTER(string, setLabel)
 
 private:
   Gtk::Button widget;
@@ -17,8 +21,6 @@ public:
   Button();
   Button(std::string label);
   Gtk::Button* get_widget();
-  void setLabel(std::string label);
-  std::string getLabel();
 };
 
 #endif
