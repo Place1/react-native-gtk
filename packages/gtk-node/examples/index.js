@@ -17,7 +17,7 @@ window.add(fixed);
 let button = new gtk.Button('Click me');
 let moved = false;
 button.onClick(() => {
-  console.log('I was clicked!');
+  console.log(`Button with label "${button.getLabel()}" was clicked!`);
   if (!moved) {
     fixed.move(button, 10, 10);
   } else {

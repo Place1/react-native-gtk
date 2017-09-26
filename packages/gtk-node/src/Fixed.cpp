@@ -9,13 +9,13 @@ Gtk::Fixed* Fixed::get_widget() {
 }
 
 void Fixed::put(Widget *widget, int x, int y) {
-  EventLoop::exectute_on_gtk_loop([this, widget, x, y]() {
+  EventLoop::exectute_on_gtk_loop<void>([this, widget, x, y]() {
     this->get_widget()->put(*widget->get_widget(), x, y);
   });
 }
 
 void Fixed::move(Widget *widget, int x, int y) {
-  EventLoop::exectute_on_gtk_loop([this, widget, x, y]() {
+  EventLoop::exectute_on_gtk_loop<void>([this, widget, x, y]() {
     this->get_widget()->move(*widget->get_widget(), x, y);
   });
 }

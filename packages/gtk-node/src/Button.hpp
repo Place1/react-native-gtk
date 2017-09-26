@@ -3,6 +3,7 @@
 
 #include <gtkmm.h>
 #include <string>
+#include <memory>
 #include "./AutoBindings/Events.hpp"
 #include "./Widget.hpp"
 
@@ -16,6 +17,8 @@ public:
   Button();
   Button(std::string label);
   Gtk::Button* get_widget();
+  void setLabel(std::string label);
+  std::string getLabel();
 };
 
 #endif

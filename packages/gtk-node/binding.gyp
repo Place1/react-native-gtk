@@ -20,7 +20,8 @@
                 "-std=c++14",
             ],
             "cflags_cc!": [
-                "-fno-rtti"
+                "-fno-rtti",
+                "-std=c++11"
             ],
             "ldflags": [
                 "-Wl,-no-as-needed",

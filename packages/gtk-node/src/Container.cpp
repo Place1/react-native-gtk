@@ -7,7 +7,7 @@ Gtk::Container* Container::get_widget() {
 }
 
 void Container::add(Widget *widget) {
-  EventLoop::exectute_on_gtk_loop([this, widget]() {
+  EventLoop::exectute_on_gtk_loop<void>([this, widget]() {
     this->get_widget()->add(*widget->get_widget());
   });
 }

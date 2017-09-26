@@ -6,22 +6,28 @@
 
 using namespace std;
 
+template<typename T>
 class Callback {
 private:
-  shared_ptr<function<void(void)>> callback_function;
-  shared_ptr<promise<void>> pending_result;
+  shared_ptr<function<T (void)>> callback_function;
+  shared_ptr<promise<T>> pending_result;
 
 public:
-
-  Callback(shared_ptr<promise<void>> prom, shared_ptr<function<void(void)>> func) {
+  Callback(shared_ptr<promise<T>> prom, shared_ptr<function<T (void)>> func) {
     this->pending_result = prom;
     this->callback_function = func;
   }
 
   void execute() {
-    (*this->callback_function)();
-    this->pending_result->set_value();
+    T result = (*this->callback_function)();
+    this->pending_result->set_value(result);
   }
 };
+
+template<>
+inline void Callback<void>::execute() {
+  (*this->callback_function)();
+  this->pending_result->set_value();
+}
 
 #endif
