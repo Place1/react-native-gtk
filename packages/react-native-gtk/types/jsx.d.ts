@@ -15,7 +15,10 @@ interface ButtonAttributes {
   onClick?(): void;
 }
 
-interface BoxAttributes {}
+interface TextInputAttributes {
+  value?: string;
+  onTextChanged?(value: string): void;
+}
 
 interface ViewAttributes {}
 
@@ -24,7 +27,7 @@ type DetailedProps<E> = GtkAttributes & E;
 declare namespace JSX {
   interface IntrinsicElements {
     Button: DetailedProps<ButtonAttributes>;
-    Box: DetailedProps<BoxAttributes>;
-    View: DetailedProps<ViewAttributes>
+    View: DetailedProps<ViewAttributes>;
+    TextInput: DetailedProps<TextInputAttributes>;
   }
 }

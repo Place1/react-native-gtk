@@ -14,6 +14,7 @@
                 "src/Widget.cpp",
                 "src/Container.cpp",
                 "src/Fixed.cpp",
+                "src/Entry.cpp",
             ],
             "cflags_cc": [
                 "<!@(pkg-config --cflags gtk+-3.0 gtkmm-3.0 sigc++-2.0) -Wall",

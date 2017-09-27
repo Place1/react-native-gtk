@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { render, Button, View } from '../src';
+import {
+  render,
+  Button,
+  View,
+  TextInput,
+} from '../src';
 
 class App extends React.Component<{}, any> {
 
   state = {
     flexDirection: 'row',
     buttonLabel: 'RNG button',
+    textInputValue: '',
   };
-
-  private interval: NodeJS.Timer | undefined;
 
   componentWillUnmount() {
     console.log('App unmounted!');
@@ -16,6 +20,11 @@ class App extends React.Component<{}, any> {
 
   componentDidUpdate() {
     console.log('current state: ' + JSON.stringify(this.state, undefined, 2));
+  }
+
+  onTextInputChange = (newValue: string) => {
+    console.log(`text input changed! value = "${newValue}"`);
+    this.setState({ textInputValue: newValue });
   }
 
   render() {
@@ -43,6 +52,10 @@ class App extends React.Component<{}, any> {
           onClick={() => this.setState({ flexDirection: this.state.flexDirection === 'row' ? 'column' : 'row' })}
         />
         <Button style={buttonSize} label="Hello world!" />
+        <TextInput
+          value={this.state.textInputValue}
+          onTextChanged={this.onTextInputChange}
+        />
       </View>
     );
   }

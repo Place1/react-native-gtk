@@ -1,5 +1,6 @@
-import GtkComponent from './GtkComponent';
 import ButtonComponent from './ButtonComponent';
+import GtkComponent from './GtkComponent';
+import TextInputComponent from './TextInputComponent';
 import ViewComponent from './ViewComponent';
 
 export interface ComponentRegistry {
@@ -8,11 +9,12 @@ export interface ComponentRegistry {
 
 // tslint:disable variable-name
 export const Button = 'Button';
-export const Box = 'Box';
 export const View = 'View';
+export const TextInput = 'TextInput';
 
 export const ComponentTypes: ComponentRegistry = {
   [Button]: ButtonComponent,
   [View]: ViewComponent,
+  [TextInput]: TextInputComponent,
 };
 // tslint:enable variable-name
