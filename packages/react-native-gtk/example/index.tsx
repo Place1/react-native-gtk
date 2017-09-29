@@ -4,6 +4,9 @@ import {
   Button,
   View,
   TextInput,
+  ListBox,
+  ListBoxRow,
+  Label,
 } from '../src';
 
 class App extends React.Component<{}, any> {
@@ -28,34 +31,42 @@ class App extends React.Component<{}, any> {
   }
 
   render() {
-    const buttonSize: any = {
-      width: 140,
-      height: 50,
-    };
     const viewStyle: any = {
       flex: 1,
       flexDirection: this.state.flexDirection,
       justifyContent: 'space-between',
-      width: 500,
+      width: 700,
       height: 500,
     };
     return (
       <View style={viewStyle}>
         <Button
-          style={buttonSize}
           label={this.state.buttonLabel}
           onClick={() => this.setState({ buttonLabel: String(Math.random()) })}
         />
         <Button
-          style={buttonSize}
           label="Flex Button"
           onClick={() => this.setState({ flexDirection: this.state.flexDirection === 'row' ? 'column' : 'row' })}
         />
-        <Button style={buttonSize} label="Hello world!" />
+        <Button label="Hello world!" />
         <TextInput
           value={this.state.textInputValue}
           onTextChanged={this.onTextInputChange}
         />
+        <ListBox style={{ height: 400, width: 100 }}>
+          <ListBoxRow>
+            <Label text="hello world 1" />
+          </ListBoxRow>
+          <ListBoxRow>
+            <Label text="hello world 2" />
+          </ListBoxRow>
+          <ListBoxRow>
+            <Label text="hello world 3" />
+          </ListBoxRow>
+          <ListBoxRow>
+            <Label text="hello world 4" />
+          </ListBoxRow>
+        </ListBox>
       </View>
     );
   }

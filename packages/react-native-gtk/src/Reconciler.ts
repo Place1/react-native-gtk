@@ -1,6 +1,6 @@
 import GtkContainer from './GtkContainer';
-import { createElement } from './components';
-import GtkComponent from './components/GtkComponent';
+import createElement from './createElement';
+import { GtkComponent } from './elements';
 
 // tslint:disable-next-line
 const ReactFiberReconciler = require('react-dom/lib/ReactFiberReconciler');
@@ -39,10 +39,10 @@ const Renderer = ReactFiberReconciler({
   },
 
   removeChild(
-    parentInstance: any,
-    child: any,
+    parentInstance: GtkComponent | GtkContainer,
+    child: GtkComponent,
   ) {
-    return undefined;
+    parentInstance.removeChild(child);
   },
 
   insertBefore(

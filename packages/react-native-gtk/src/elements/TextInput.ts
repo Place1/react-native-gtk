@@ -1,7 +1,13 @@
-import GtkComponent from './GtkComponent';
 import * as gtk from 'gtk-node';
 
-export default class TextInputComponent extends GtkComponent<gtk.Entry> {
+import { default as GtkComponent, GtkProps } from './GtkComponent';
+
+export interface TextInputProps extends GtkProps {
+  value?: string;
+  onTextChanged?(value: string): void;
+}
+
+export default class TextInput extends GtkComponent<gtk.Entry, TextInputProps> {
   node = new gtk.Entry();
 
   setProp(prop: string, value: any) {

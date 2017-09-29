@@ -4,10 +4,14 @@
 #include <gtkmm.h>
 #include <string>
 #include "./Widget.hpp"
+#include "./AutoBindings/Properties.hpp"
 
 using namespace std;
 
 class Label : public Widget {
+DEFINE_GETTER(string, getText)
+DEFINE_SETTER(string, setText)
+
 private:
   Gtk::Label widget;
 

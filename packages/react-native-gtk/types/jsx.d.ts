@@ -1,33 +1,19 @@
-interface StyleAttribute {
-  flex?: number;
-  flexDirection?: 'row' | 'column';
-  justifyContent?: 'space-between' | 'space-around';
-  width?: number;
-  height?: number;
-}
+import Button from '../src/elements/Button';
+import Label from '../src/elements/Label';
+import ListBox from '../src/elements/ListBox';
+import ListBoxRow from '../src/elements/ListBoxRow';
+import TextInput from '../src/elements/TextInput';
+import View from '../src/elements/View';
 
-interface GtkAttributes {
-  style?: StyleAttribute
-}
-
-interface ButtonAttributes {
-  label?: string;
-  onClick?(): void;
-}
-
-interface TextInputAttributes {
-  value?: string;
-  onTextChanged?(value: string): void;
-}
-
-interface ViewAttributes {}
-
-type DetailedProps<E> = GtkAttributes & E;
-
-declare namespace JSX {
-  interface IntrinsicElements {
-    Button: DetailedProps<ButtonAttributes>;
-    View: DetailedProps<ViewAttributes>;
-    TextInput: DetailedProps<TextInputAttributes>;
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      Button: Button['props'];
+      View: View['props'];
+      TextInput: TextInput['props'];
+      ListBox: ListBox['props'];
+      ListBoxRow: ListBoxRow['props'];
+      Label: Label['props'];
+    }
   }
 }

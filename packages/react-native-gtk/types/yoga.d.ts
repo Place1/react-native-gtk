@@ -12,6 +12,10 @@ declare module 'yoga-layout' {
     static createDefault(): Node;
     calculateLayout(): void;
     getComputedLayout(): Layout;
+    getComputedLeft(): number;
+    getComputedTop(): number;
+    getComputedHeight(): number;
+    getComputedWidth(): number;
     insertChild(child: Node, position: number): void;
     getChildCount(): number;
     getChild(childIndex: number): Node;
@@ -19,6 +23,8 @@ declare module 'yoga-layout' {
     setJustifyContent(justification: any): void;
     setWidth(width: number): void;
     setHeight(height: number): void;
+    free(): void;
+    freeRecursive(): void;
   }
 
   export const FLEX_DIRECTION_ROW: any;

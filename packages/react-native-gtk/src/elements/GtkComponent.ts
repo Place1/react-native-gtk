@@ -1,18 +1,29 @@
+import cssToYogaValue from '../flexbox/cssToYogaValue';
 import flex from '../flexbox/flex';
 import { Node } from 'yoga-layout';
 import * as gtk from 'gtk-node';
 
-export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget> {
-  abstract node: T;
-  props: any;
-  root: any;
-  children = new Array<GtkComponent>();
+export interface StyleAttributes {
+  flex ?: number;
+  flexDirection ?: 'row' | 'column';
+  justifyContent ?: 'space-between' | 'space-around';
+  width ?: number;
+  height ?: number;
+}
 
+export interface GtkProps {
+  style?: StyleAttributes;
+  children?: any;
+};
+
+export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P extends GtkProps = GtkProps> {
+  abstract node: T;
+  props: P;
+  children = new Array<GtkComponent>();
   layout: Node = Node.createDefault();
 
-  constructor(props: any, root: any) {
+  constructor(props: P) {
     this.props = props;
-    this.root = root;
   }
 
   commitMount(): void {
@@ -34,6 +45,10 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget> {
     this.layout.insertChild(child.layout, this.layout.getChildCount());
   }
 
+  removeChild(child: GtkComponent): void {
+
+  }
+
   layoutChildren(): void {
     // no-op
     return undefined;
@@ -53,7 +68,7 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget> {
     return undefined;
   }
 
-  private applyStyles(style: StyleAttribute) {
+  private applyStyles(style: StyleAttributes) {
     flex(style, this.layout);
     if ('width' in style && 'height' in style) {
       this.node.set_size_request(style.width as number, style.height as number);
