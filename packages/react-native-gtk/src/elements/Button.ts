@@ -8,7 +8,7 @@ export interface ButtonProps extends GtkProps {
 
 export default class Button extends GtkComponent<gtk.Button, ButtonProps> {
 
-  node = new gtk.Button();;
+  node = new gtk.Button();
 
   setProp(prop: string, value: any) {
     switch (prop) {

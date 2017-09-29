@@ -19,12 +19,12 @@ export default class View extends GtkComponent<gtk.Fixed> {
     for (const child of this.children) {
       child.node.set_size_request(
         child.layout.getComputedWidth(),
-        child.layout.getComputedHeight()
+        child.layout.getComputedHeight(),
       );
       this.node.move(
         child.node,
         child.layout.getComputedLeft(),
-        child.layout.getComputedTop()
+        child.layout.getComputedTop(),
       );
     }
   }

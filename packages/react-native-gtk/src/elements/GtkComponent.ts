@@ -1,7 +1,7 @@
-import cssToYogaValue from '../flexbox/cssToYogaValue';
-import flex from '../flexbox/flex';
-import { Node } from 'yoga-layout';
 import * as gtk from 'gtk-node';
+import { Node } from 'yoga-layout';
+
+import flex from '../flexbox/flex';
 
 export interface StyleAttributes {
   flex ?: number;
@@ -13,8 +13,8 @@ export interface StyleAttributes {
 
 export interface GtkProps {
   style?: StyleAttributes;
-  children?: any;
-};
+  children?: any; // FIXME what type should this be?
+}
 
 export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P extends GtkProps = GtkProps> {
   abstract node: T;
@@ -46,7 +46,8 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P 
   }
 
   removeChild(child: GtkComponent): void {
-
+    // no-op
+    return undefined;
   }
 
   layoutChildren(): void {
