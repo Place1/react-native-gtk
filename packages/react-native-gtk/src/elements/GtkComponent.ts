@@ -1,17 +1,11 @@
+import StyleAttributes from '../style/StyleAttributes';
 import * as gtk from 'gtk-node';
 import { Node } from 'yoga-layout';
 
 import flex from '../flexbox/flex';
 
-export interface StyleAttributes {
-  flex ?: number;
-  flexDirection ?: 'row' | 'column';
-  justifyContent ?: 'space-between' | 'space-around';
-  width ?: number;
-  height ?: number;
-}
-
 export interface GtkProps {
+  key?: string | number;
   style?: StyleAttributes;
   children?: any; // FIXME what type should this be?
 }
@@ -37,7 +31,7 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P 
 
   private update() {
     this.setProps();
-    this.layoutChildren();
+    this.node.showAll(); // if chil nodes are added we want to show them automatically!
   }
 
   appendChild(child: GtkComponent): void {
@@ -71,8 +65,8 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P 
 
   private applyStyles(style: StyleAttributes) {
     flex(style, this.layout);
-    if ('width' in style && 'height' in style) {
-      this.node.set_size_request(style.width as number, style.height as number);
+    if (style.width !== undefined && style.height !== undefined) {
+      this.node.setSizeRequest(style.width, style.height);
     }
   }
 }

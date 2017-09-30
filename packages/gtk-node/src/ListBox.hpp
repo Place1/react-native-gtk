@@ -10,6 +10,7 @@ private:
 
 public:
   Gtk::ListBox* get_widget();
+  void insert(Widget *widget, int position);
 };
 
 #endif

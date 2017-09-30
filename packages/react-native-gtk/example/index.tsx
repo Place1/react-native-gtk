@@ -38,18 +38,25 @@ class App extends React.Component<{}, any> {
       width: 700,
       height: 500,
     };
+    const buttonStyle: any = {
+      height: 50,
+      width: 75,
+    }
+    const inputStyle = buttonStyle;
     return (
       <View style={viewStyle}>
         <Button
+          style={buttonStyle}
           label={this.state.buttonLabel}
           onClick={() => this.setState({ buttonLabel: String(Math.random()) })}
         />
         <Button
+          style={buttonStyle}
           label="Flex Button"
           onClick={() => this.setState({ flexDirection: this.state.flexDirection === 'row' ? 'column' : 'row' })}
         />
-        <Button label="Hello world!" />
         <TextInput
+          style={inputStyle}
           value={this.state.textInputValue}
           onTextChanged={this.onTextInputChange}
         />

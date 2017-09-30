@@ -12,8 +12,15 @@ void Container::add(Widget *widget) {
   });
 }
 
+void Container::remove(Widget *widget) {
+  EventLoop::exectute_on_gtk_loop<void>([this, widget]() {
+    this->get_widget()->remove(*widget->get_widget());
+  });
+}
+
 NBIND_CLASS(Container) {
   NBIND_INHERIT(Widget);
   NBIND_CONSTRUCT<>();
   NBIND_METHOD(add);
+  NBIND_METHOD(remove);
 }

@@ -19,7 +19,7 @@
     "example": "npm install && node examples/index.js",
     "install": "autogypi && npm run build",
     "build": "node-gyp configure build && ndts . > build/types.d.ts",
-    "build:debug": "node-gyp configure build --debug",
+    "build:debug": "node-gyp configure build --debug && ndts . > build/types.d.ts",
     "clean": "rm -r ./build"
   },
   "devDependencies": {

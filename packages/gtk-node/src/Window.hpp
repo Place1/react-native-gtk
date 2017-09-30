@@ -10,6 +10,7 @@ class Window : public Container {
 private:
   Gtk::Window widget;
   std::unique_ptr<nbind::cbFunction> on_close_cb;
+  std::unique_ptr<nbind::cbFunction> on_configure_cb;
 
 public:
   Window();
@@ -17,7 +18,7 @@ public:
   void setTitle(std::string title);
   void setDefaultSize(int width, int height);
   void onClose(nbind::cbFunction &cb);
-  void showAll();
+  void onConfigure(nbind::cbFunction &cb);
 };
 
 #endif

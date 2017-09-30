@@ -1,11 +1,15 @@
-import { Node } from 'yoga-layout';
+import * as Yoga from 'yoga-layout';
 
-import { StyleAttributes } from '../elements/GtkComponent';
+import StyleAttributes from '../style/StyleAttributes';
 import cssToYogaValue from './cssToYogaValue';
 
-export default function flex(style: StyleAttributes, styleNode: Node) {
+export default function flex(style: StyleAttributes, styleNode: Yoga.Node) {
   for (const [key, value] of Object.entries(style)) {
     switch (key) {
+      case 'flex':
+        styleNode.setFlex(value);
+        break;
+
       case 'flexDirection':
         styleNode.setFlexDirection(cssToYogaValue(key, value));
         break;
@@ -21,6 +25,23 @@ export default function flex(style: StyleAttributes, styleNode: Node) {
       case 'height':
         styleNode.setHeight(value);
         break;
+
+      case 'marginTop':
+        styleNode.setMargin(Yoga.EDGE_TOP, value);
+        break;
+
+      case 'marginRight':
+        styleNode.setMargin(Yoga.EDGE_RIGHT, value);
+        break;
+
+      case 'marginBottom':
+        styleNode.setMargin(Yoga.EDGE_BOTTOM, value);
+        break;
+
+      case 'marginLeft':
+        styleNode.setMargin(Yoga.EDGE_LEFT, value);
+        break;
+
     }
   }
 }

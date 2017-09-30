@@ -8,7 +8,8 @@ import Renderer from './Reconciler';
 export default function render(element: any) {
   const app = new gtk.Application();
   const window = new gtk.Window();
-  const root = Renderer.createContainer(new GtkContainer(window));
+  const container = new GtkContainer(window);
+  const root = Renderer.createContainer(container);
 
   // we want to quit the app when the window is closed
   // but we also need to unmount every react component
@@ -20,7 +21,11 @@ export default function render(element: any) {
   });
 
   // react inital render!
-  Renderer.updateContainer(element, root, null);
+  Renderer.updateContainer(element, root, null, () => {
+    // FIXME layout shouldn't happen here! It needs to be run when things update as well!
+    container.layoutChildren();
+  });
+
 
   // start the application
   app.run(window);

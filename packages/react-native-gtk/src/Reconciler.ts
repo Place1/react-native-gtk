@@ -116,7 +116,7 @@ const Renderer = ReactFiberReconciler({
     return {};
   },
 
-  // the prepareForCommit and resetAfterCommit methods are necessary for UNKNOWN_TYPE
+  // the prepareForCommit and resetAfterCommit methods are necessary for any
   // global side-effects you need to trigger in the host environment. In
   // ReactDOM this does things like disable the ReactDOM events to ensure no
   // callbacks are fired during DOM manipulations

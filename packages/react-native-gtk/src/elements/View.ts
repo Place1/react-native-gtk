@@ -11,13 +11,9 @@ export default class View extends GtkComponent<gtk.Fixed> {
   }
 
   layoutChildren() {
-    // TODO calculateLayout should be called once per react render!
-    // not on every node that lays out children!
-    this.layout.calculateLayout();
-
     // layout the view's widgets based on the flex layout.
     for (const child of this.children) {
-      child.node.set_size_request(
+      child.node.setSizeRequest(
         child.layout.getComputedWidth(),
         child.layout.getComputedHeight(),
       );
@@ -26,6 +22,9 @@ export default class View extends GtkComponent<gtk.Fixed> {
         child.layout.getComputedLeft(),
         child.layout.getComputedTop(),
       );
+
+      // layout this child's children (recursively)
+      child.layoutChildren();
     }
   }
 }

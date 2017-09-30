@@ -1,7 +1,11 @@
-// export * from './components';
+// React Renderer
 export { default as render } from './render';
 export { default as unmountComponentAtNode} from './unmountComponentAtNode';
 
+// Style
+export { StyleSheet } from './style';
+
+// Components
 // tslint:disable variable-name
 export const Button = 'Button';
 export const View = 'View';

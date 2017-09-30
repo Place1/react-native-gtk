@@ -23,7 +23,8 @@ public:
     return nullptr;
   }
 
-  void set_size_request(int width, int height);
+  void setSizeRequest(int width, int height);
+  void showAll();
 };
 
 #endif
