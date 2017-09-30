@@ -15,18 +15,18 @@ type UNKNOWN_TYPE = any;
 // tslint:disable-next-line variable-name
 const Renderer = ReactFiberReconciler({
   createInstance(
-    type: any,
+    type: string,
     props: any,
-    rootContainerInstance: any,
-    hostContext: any,
-    internalInstanceHandle: any,
+    rootContainerInstance: GtkContainer,
+    hostContext: UNKNOWN_TYPE,
+    internalInstanceHandle: UNKNOWN_TYPE,
   ) {
     return createElement(type, props, rootContainerInstance);
   },
 
   appendInitialChild(
-    parentInstance: any,
-    child: any,
+    parentInstance: GtkComponent | GtkComponent,
+    child: GtkComponent,
   ) {
     parentInstance.appendChild(child);
   },
@@ -46,9 +46,9 @@ const Renderer = ReactFiberReconciler({
   },
 
   insertBefore(
-    parentInstance: any,
-    child: any,
-    beforeChild: any,
+    parentInstance: GtkComponent,
+    child: GtkComponent,
+    beforeChild: GtkComponent,
   ) {
     return undefined;
   },
@@ -56,10 +56,10 @@ const Renderer = ReactFiberReconciler({
   // finalizeInitialChildren is the final HostConfig method called before
   // flushing the root component to the host environment
   finalizeInitialChildren(
-    instance: any,
-    type: any,
+    instance: GtkComponent,
+    type: string,
     props: any,
-    rootContainerInstance: any,
+    rootContainerInstance: GtkContainer,
   ) {
     return true;
   },
@@ -69,23 +69,20 @@ const Renderer = ReactFiberReconciler({
   // can reuse this work even if it pauses or aborts rendering a subset of the
   // tree.
   prepareUpdate(
-    instance: any,
-    type: any,
+    instance: GtkComponent,
+    type: string,
     oldProps: any,
     newProps: any,
+    rootContainerInstance: GtkContainer,
+    hostContext: UNKNOWN_TYPE,
   ) {
-    // TODO
-    // return newProps;
     return true;
   },
 
   commitUpdate(
     instance: GtkComponent,
     updatePayload: boolean,
-    // this is the type of component.
-    // I'm not sure if it's ANY react component or
-    // just the raw GtkComponent's that we implement.
-    type: UNKNOWN_TYPE,
+    type: string,
     oldProps: any,
     newProps: any,
     finishedWorkFiber: UNKNOWN_TYPE, // I think this is some internal React Fiber object
@@ -97,8 +94,8 @@ const Renderer = ReactFiberReconciler({
   // `initializeFinalChildren` returns true.
   commitMount(
     instance: GtkComponent,
-    type: UNKNOWN_TYPE,
-    newProps: UNKNOWN_TYPE,
+    type: string,
+    newProps: any,
     internalInstanceHandle: UNKNOWN_TYPE,
   ) {
     instance.commitMount();
@@ -108,11 +105,15 @@ const Renderer = ReactFiberReconciler({
     return instance;
   },
 
-  getRootHostContext(rootContainerInstance: UNKNOWN_TYPE) {
+  getRootHostContext(rootContainerInstance: GtkContainer) {
     return {};
   },
 
-  getChildHostContext(parentHostContext: UNKNOWN_TYPE, type: UNKNOWN_TYPE, rootContainerInstance: UNKNOWN_TYPE) {
+  getChildHostContext(
+    parentHostContext: UNKNOWN_TYPE,
+    type: string,
+    rootContainerInstance: GtkContainer,
+  ) {
     return {};
   },
 
@@ -121,17 +122,19 @@ const Renderer = ReactFiberReconciler({
   // ReactDOM this does things like disable the ReactDOM events to ensure no
   // callbacks are fired during DOM manipulations
   prepareForCommit() {
+    // no-op
     return undefined;
   },
 
   resetAfterCommit() {
+    // no-op
     return undefined;
   },
 
   // the following four methods are regarding TextInstances. In our example
   // renderer we don’t have specific text nodes like the DOM does so we’ll just
   // noop all of them.
-  shouldSetTextContent(props: UNKNOWN_TYPE) {
+  shouldSetTextContent(props: any) {
     if (typeof props.children === 'string') {
       return true;
     }
@@ -148,6 +151,8 @@ const Renderer = ReactFiberReconciler({
     hostContext: UNKNOWN_TYPE,
     internalInstanceHandle: UNKNOWN_TYPE,
   ) {
+    // this should never be called because
+    // we currently don't support text instances
     return text;
   },
 
@@ -155,14 +160,19 @@ const Renderer = ReactFiberReconciler({
     textInstance: UNKNOWN_TYPE,
     newText: any,
   ) {
+    // we don't support text instances yet
+    // and i'm not sure if we should. React native
+    // forces the use of <Text />
     throw new Error('commitTextUpdate should not be called');
   },
 
   scheduleAnimationCallback() {
+    // no-op
     return undefined;
   },
 
   scheduleDeferredCallback() {
+    // no-op
     return undefined;
   },
 

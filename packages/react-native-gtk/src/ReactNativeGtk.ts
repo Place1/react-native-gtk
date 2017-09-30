@@ -1,11 +1,9 @@
-import unmountComponentAtNode from './unmountComponentAtNode';
 import * as gtk from 'gtk-node';
 
 import GtkContainer from './GtkContainer';
 import Renderer from './Reconciler';
 
-
-export default function render(element: any) {
+export function render(element: any) {
   const app = new gtk.Application();
   const window = new gtk.Window();
   const container = new GtkContainer(window);
@@ -26,7 +24,10 @@ export default function render(element: any) {
     container.layoutChildren();
   });
 
-
   // start the application
   app.run(window);
+}
+
+export function unmountComponentAtNode(container: GtkContainer) {
+  Renderer.updateContainer(null, container, null);
 }

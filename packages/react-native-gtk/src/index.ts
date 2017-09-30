@@ -1,6 +1,5 @@
 // React Renderer
-export { default as render } from './render';
-export { default as unmountComponentAtNode} from './unmountComponentAtNode';
+export { render, unmountComponentAtNode } from './ReactNativeGtk';
 
 // Style
 export { StyleSheet } from './style';

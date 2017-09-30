@@ -24,7 +24,10 @@ export default class GtkContainer {
     // up the layout tree. We need to design how
     // components create/update/mount/unmount/destroy.
     // properly. This will be part of the unmount
-    // phase.
+    // phase. The problem here is that components
+    // that unmount deeper in the tree will not
+    // free their layout nodes until the entire
+    // tree is unmounted (the container is unmounted).
     child.layout.freeRecursive();
   }
 
