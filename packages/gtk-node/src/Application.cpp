@@ -7,10 +7,12 @@
 #include <stdio.h>
 
 Application::Application() {
+  EventLoop::init();
   this->gtk_application = Gtk::Application::create("org.gtk.example");
 }
 
 Application::Application(std::string application_id) {
+  EventLoop::init();
   this->gtk_application = Gtk::Application::create(application_id);
 }
 
@@ -27,7 +29,7 @@ void Application::run(Window *window) {
 void Application::quit() {
   if (this->is_running) {
     EventLoop::stop();
-    EventLoop::enqueue_gtk_loop([this]() {
+    EventLoop::enqueue_gtk_loop<void>([this]() {
       this->gtk_application->quit();
     });
     this->is_running = false;

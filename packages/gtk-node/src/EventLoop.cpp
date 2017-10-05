@@ -1,145 +1,63 @@
 #include "./EventLoop.hpp"
+#include "./Callback.hpp"
 #include <uv.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/time.h>
-#include <poll.h>
 #include <nan.h>
-#include <iostream>
-
+#include <gtkmm.h>
 #include <gtk/gtk.h>
-#include <gdk/gdk.h>
-#include <gdk/gdkx.h>
-#include <X11/Xlib.h>
+#include <future>
+#include <functional>
+#include <thread>
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <memory>
 
-// platform specific
-static gboolean stepsQuit = FALSE;
-static gboolean (*iteration)(gboolean) = NULL;
+using namespace std;
 
-int uiEventsPending() {
-  return gtk_events_pending();
+bool EventLoop::is_running = false;
+
+uv_work_t ui_thread_work;
+uv_async_t js_thread_work;
+
+void uv_call_fn(uv_async_t *async);
+
+void run_main_loop(uv_work_t *work) {
+  auto application = (Gtk::Application *)work->data;
+  EventLoop::is_running = true;
+  application->run();
 }
 
-int uiConnectionNumber() {
-  GdkDisplay *gd = gdk_display_get_default();
-  Display *d = gdk_x11_display_get_xdisplay(gd);
-  int fd = ConnectionNumber(d);
-  return fd;
+void on_main_loop_end(uv_work_t *work, int status) {
+  printf("main loop ended!\n");
+  EventLoop::is_running = false;
+  uv_close((uv_handle_t *)(&js_thread_work), NULL);
 }
 
-
-static gboolean stepsIteration(gboolean block) {
-  gtk_main_iteration_do(block);
-  return stepsQuit;
+void EventLoop::init() {
+  uv_async_init(uv_default_loop(), &js_thread_work, uv_call_fn); // TODO where should I call this. It MUST be called from the JS main thread1
 }
 
-void uiMainSteps(void) {
-  iteration = stepsIteration;
+void EventLoop::start(Gtk::Application &app) {
+  ui_thread_work.data = &app;
+  uv_queue_work(uv_default_loop(), &ui_thread_work, run_main_loop, on_main_loop_end);
 }
 
-int uiMainStep(int wait) {
-  gboolean block;
-  block = FALSE;
-  if (wait)
-    block = TRUE;
-  return (*iteration)(block) == FALSE;
+void EventLoop::stop() {
+  // no-op (does this method even need to exist for the API in the future?)
 }
 
-static gboolean quit(gpointer data) {
-	if (iteration == stepsIteration)
-		stepsQuit = TRUE;
-		// TODO run a gtk_main() here just to do the cleanup steps of syncing the clipboard and other stuff gtk_main() does before it returns
-	else
-		gtk_main_quit();
-	return FALSE;
+void uv_call_fn(uv_async_t *async) {
+  Nan::HandleScope scope;
+  auto callback = (std::function<void (void)> *)async->data;
+  (*callback)();
+  delete callback; // FIXME we need a datastructure that can let us notify the sender instead of cleaning up memory for them!
 }
 
-void uiQuit(void) {
-	gdk_threads_add_idle(quit, NULL);
-}
-
-// non platform specific
-uv_thread_t *thread;
-bool running = false;
-
-void asyncClosed(uv_handle_t* handle) {
-  delete handle;
-}
-
-static void eventsPending(uv_async_t* handle) {
-  Nan::HandleScope scope; // no idea what this does or how it works, but it's required for callbacks to work!
-  while(uiEventsPending()) {
-    uiMainStep(0);
-  }
-}
-
-void pollEvents(void* arg) {
-  int fd = uiConnectionNumber();
-  struct pollfd fds;
-  fds.fd = fd;
-  fds.events = POLLIN | POLLPRI;
-
-  uv_async_t * asyncCall = new uv_async_t();
-  uv_async_init(uv_default_loop(), asyncCall, eventsPending);
-
-  while(running) {
-    if (poll(&fds, 1, 50) == 1) {
-      uv_async_send(asyncCall);
-    }
-
-  }
-  uv_close((uv_handle_t*) asyncCall, asyncClosed);
-}
-
-void EventLoop::start(Glib::RefPtr<Gtk::Application> app) {
-  if (running) {
-    return;
-  }
-
-  running = true;
-  uiMainSteps();
-
-  thread = new uv_thread_t();
-  uv_thread_create(thread, pollEvents, NULL);
-}
-
-void EventLoop::stop () {
-  if (!running) {
-    return;
-  }
-  running = false;
-
-  uiQuit();
-  uv_thread_join(thread);
-  delete thread;
-}
-
-/**
- * This method exists because currently we only poll
- * the X11 display for XEvents. If something causes
- * events to be added to the GTK main loop outside
- * of an input event from X11 then the current
- * `pollEvents()` method will not notice it and
- * so it will not enqueue a `eventsPending()` task.
- * As a result, I had trouble with NodeJS `setTimeout()`'s
- * and other async callbacks that would use GTK APIs
- * to change the UI but it wouldn't update (re-render).
- * Bindings can use this method to force a `pendingEvents()`
- * task to be enqueued if they know a re-render will be
- * required (or any other reason to run the GTK event loop)
- * as a result of their use of GTK.
- *
- * Ideally this wouldn't be required. Ideally we could poll
- * for more GTK event sources than just X11 so this would
- * automatically happen. It will be error prone to force
- * binding implementations to know when to call this, and
- * it may have a performance impact as well in the case
- * where the GTK event loop didn't need to be run but
- * someone called `run_until_empty()` (who knows though!).
- */
-void EventLoop::run_until_empty() {
-  std::cerr << "EventLoop::run_until_empty() is experimental!" << std::endl;
-  uv_async_t * asyncCall = new uv_async_t();
-  uv_async_init(uv_default_loop(), asyncCall, eventsPending);
-  uv_async_send(asyncCall);
+void EventLoop::enqueue_js_loop(std::function<void (void)> callback) {
+  // FIXME i think there's a race condition possible here as this
+  // method is supposed to be called from the UI thread. If two
+  // calls happen before a single 'uv_call_fn()' happens then the first
+  // won't ever be called because the '.data' property will be overridden!
+  js_thread_work.data = new std::function<void (void)>(callback);
+  uv_async_send(&js_thread_work);
 }

@@ -16,6 +16,7 @@ public:
   static bool is_running;
 
 public:
+  static void init();
   static void start(Gtk::Application &app);
   static void stop();
 
@@ -24,6 +25,9 @@ public:
 
   template<typename T = void>
   static T exectute_on_gtk_loop(std::function<T(void)> f); // TODO this should be a template method to return the result of the function as the future value
+
+  template<typename T = void>
+  static std::future<T> enqueue_gtk_loop(std::function<T(void)> f);
 };
 
 template<typename T>
@@ -36,14 +40,21 @@ gboolean gtk_call_fn(void* data) {
 
 template<typename T>
 T EventLoop::exectute_on_gtk_loop(std::function<T (void)> f) {
-  if (!EventLoop::is_running) {
-    return f();
-  }
+  return EventLoop::enqueue_gtk_loop<T>(f).get();
+}
+
+template<typename T>
+std::future<T> EventLoop::enqueue_gtk_loop(std::function<T (void)> f) {
   auto prom = std::make_shared<std::promise<T>>();
   auto func = std::make_shared<std::function<T (void)>>(f);
   auto callback = new std::shared_ptr<Callback<T>>(new Callback<T>(prom, func));
-  gdk_threads_add_idle(gtk_call_fn<T>, callback);
-  return prom->get_future().get();
+  if (!EventLoop::is_running) {
+    (*callback)->execute();
+  } else {
+    gdk_threads_add_idle(gtk_call_fn<T>, callback);
+  }
+  return prom->get_future();
 }
+
 
 #endif
