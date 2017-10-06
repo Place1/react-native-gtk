@@ -78,5 +78,3 @@ class App extends React.Component<{}, any> {
     );
   }
 }
-
-render(<App />);

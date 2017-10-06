@@ -15,15 +15,17 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "test": "echo 'todo write tests'",
+    "test": "jest",
     "lint": "tslint 'src/**/*.{ts,tsx}' --project ./",
     "build": "tsc",
     "example": "ts-node example/index.tsx"
   },
   "devDependencies": {
+    "@types/jest": "^21.1.1",
     "@types/node": "^8.0.28",
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
+    "jest": "^21.2.1",
     "react": "16.0.0-alpha.6",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
@@ -37,5 +39,18 @@
   },
   "peerDependencies": {
     "react": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.test.(ts|tsx|js)"
+    ]
   }
 }

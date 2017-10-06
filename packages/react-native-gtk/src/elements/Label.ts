@@ -8,6 +8,16 @@ export interface LabelProps extends GtkProps {
 export default class Label extends GtkComponent<gtk.Label, LabelProps> {
   node = new gtk.Label();
 
+  constructor(props: any) {
+    super(props);
+    this.node.onSizeAllocate(this.onSizeAllocate);
+  }
+
+  private onSizeAllocate = (allocation: gtk.Allocation) => {
+    this.layout.setHeight(allocation.getHeight());
+    this.layout.setWidth(allocation.getWidth());
+  }
+
   setProp(prop: string, value: any) {
     switch (prop) {
       case 'text':

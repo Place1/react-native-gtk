@@ -43,13 +43,13 @@ class App extends React.Component<{}, State> {
   }
 
   componentDidUpdate() {
-    console.log(JSON.stringify(this.state, undefined, 2));
+    // console.log(JSON.stringify(this.state, undefined, 2));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <ListBox style={{ height: 50 }}>
+        <ListBox>
           {this.state.todos.map((todo, i) => (
             <ListBoxRow key={i}>
               <Label text={todo.title} />

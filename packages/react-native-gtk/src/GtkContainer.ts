@@ -61,4 +61,3 @@ function debugLayoutAux(node: Node) {
   const result = debugLayoutAux(node);
   console.log(JSON.stringify(result, undefined, 2)); // tslint:disable-line no-magic-numbers no-console
 };
-

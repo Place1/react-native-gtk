@@ -24,10 +24,10 @@ declare module 'yoga-layout' {
     setWidth(width: number): void;
     setHeight(height: number): void;
     setMargin(edge: any, value: number): void;
-    setMargin(edge: any, value: number): void;
-    setMargin(edge: any, value: number): void;
-    setMargin(edge: any, value: number): void;
+    setPadding(edge: any, value: number): void;
     setFlex(flex: number): void;
+    setMeasureFunc(measureFunc: MeasureFuncion): void;
+    markDirty(): void;
     free(): void;
     freeRecursive(): void;
   }
@@ -43,4 +43,15 @@ declare module 'yoga-layout' {
   export const EDGE_RIGHT: any;
   export const EDGE_BOTTOM: any;
   export const EDGE_LEFT: any;
+  export const MEASURE_MODE_EXACTLY: any;
+  export const MEASURE_MODE_AT_MOST: any;
+
+  export interface MeasureFuncion {
+    (width: number, widthMode: any, height: number, heightMode: any): Partial<YogaSize>;
+  }
+
+  export interface YogaSize {
+    width: number;
+    height: number;
+  }
 }

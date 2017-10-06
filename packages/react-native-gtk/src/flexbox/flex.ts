@@ -42,6 +42,21 @@ export default function flex(style: StyleAttributes, styleNode: Yoga.Node) {
         styleNode.setMargin(Yoga.EDGE_LEFT, value);
         break;
 
+      case 'paddingTop':
+        styleNode.setPadding(Yoga.EDGE_TOP, value);
+        break;
+
+      case 'paddingRight':
+        styleNode.setPadding(Yoga.EDGE_RIGHT, value);
+        break;
+
+      case 'paddingBottom':
+        styleNode.setPadding(Yoga.EDGE_BOTTOM, value);
+        break;
+
+      case 'paddingLeft':
+        styleNode.setPadding(Yoga.EDGE_LEFT, value);
+        break;
     }
   }
 }

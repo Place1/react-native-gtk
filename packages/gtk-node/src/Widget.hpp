@@ -2,8 +2,21 @@
 #define WIDGET_WRAPPER_H
 
 #include <gtkmm.h>
+#include <memory>
+#include <nbind/api.h>
+#include "./Allocation.hpp"
+#include "./AutoBindings/Properties.hpp"
+#include "./AutoBindings/Events.hpp"
+
+using namespace std;
 
 class Widget {
+DEFINE_GETTER(Allocation, getAllocation)
+DEFINE_EVENT(onSizeAllocate)
+
+private:
+  unique_ptr<nbind::cbFunction> on_size_allocate_cb;
+
 public:
   Widget();
 

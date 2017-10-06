@@ -9,20 +9,24 @@ export function render(element: any) {
   const container = new GtkContainer(window);
   const root = Renderer.createContainer(container);
 
+  const hackLayoutInterval = setInterval(() => {
+    // I haven't implemented the layout system at all
+    // yet so i'll just do a layout every 100ms
+    container.layoutChildren();
+  },                                     0);
+
   // we want to quit the app when the window is closed
   // but we also need to unmount every react component
   // first, to allow devs a place to cleanup timers, async stuff
   // etc.
   window.onClose(() => {
+    clearInterval(hackLayoutInterval);
     unmountComponentAtNode(root);
     app.quit();
   });
 
   // react inital render!
-  Renderer.updateContainer(element, root, null, () => {
-    // FIXME layout shouldn't happen here! It needs to be run when things update as well!
-    container.layoutChildren();
-  });
+  Renderer.updateContainer(element, root);
 
   // start the application
   app.run(window);

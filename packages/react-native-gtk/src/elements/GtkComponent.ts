@@ -1,8 +1,9 @@
-import StyleAttributes from '../style/StyleAttributes';
 import * as gtk from 'gtk-node';
 import { Node } from 'yoga-layout';
 
 import flex from '../flexbox/flex';
+import StyleAttributes from '../style/StyleAttributes';
+import { expandStyleShorthands } from '../style/styleShorthands';
 
 export interface GtkProps {
   key?: string | number;
@@ -10,22 +11,41 @@ export interface GtkProps {
   children?: any; // FIXME what type should this be?
 }
 
-export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P extends GtkProps = GtkProps> {
-  abstract node: T;
-  props: P;
+export default abstract class GtkComponent<
+  NodeType extends gtk.Widget = gtk.Widget, Props extends GtkProps = GtkProps> {
+
+  static defaultProps: GtkProps = {
+    style: {},
+  };
+
+  static defaultStyle: StyleAttributes = {};
+
+  abstract node: NodeType;
+  props: Props;
   children = new Array<GtkComponent>();
   layout: Node = Node.createDefault();
 
-  constructor(props: P) {
-    this.props = props;
+  constructor(props: Props) {
+    this.acceptProps(props);
+  }
+
+  private acceptProps(props: any) {
+    this.props = {
+      ...(this.constructor as typeof GtkComponent).defaultProps,
+      ...props,
+    };
+    this.props.style = {
+      ...(this.constructor as typeof GtkComponent).defaultStyle,
+      ...this.props.style,
+    };
   }
 
   commitMount(): void {
     this.update();
   }
 
-  commitUpdate(newProps: any): void {
-    this.props = newProps;
+  commitUpdate(newProps: Props): void {
+    this.acceptProps(newProps);
     this.update();
   }
 
@@ -64,9 +84,11 @@ export default abstract class GtkComponent<T extends gtk.Widget = gtk.Widget, P 
   }
 
   private applyStyles(style: StyleAttributes) {
-    flex(style, this.layout);
-    if (style.width !== undefined && style.height !== undefined) {
-      this.node.setSizeRequest(style.width, style.height);
+    const copy = {...style};
+    const expanded = expandStyleShorthands(copy);
+    flex(expanded, this.layout);
+    if (expanded.width !== undefined && expanded.height !== undefined) {
+      this.node.setSizeRequest(expanded.width, expanded.height);
     }
   }
 }
