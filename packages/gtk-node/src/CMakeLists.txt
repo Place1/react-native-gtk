@@ -6,6 +6,7 @@ set(NODE_MODULES "../node_modules")
 
 # src
 file(GLOB SOURCE_FILES "./*")
+include_directories("./")
 
 
 # cmake-js
