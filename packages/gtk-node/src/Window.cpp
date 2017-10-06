@@ -5,12 +5,6 @@
 #include "./Window.hpp"
 #include "./EventLoop.hpp"
 
-Window::Window() : Container() {}
-
-Gtk::Window* Window::get_widget() {
-  return &this->widget;
-}
-
 void Window::setTitle(std::string title) {
   EventLoop::exectute_on_gtk_loop<void>([this, title]() {
     this->get_widget()->set_title(title);

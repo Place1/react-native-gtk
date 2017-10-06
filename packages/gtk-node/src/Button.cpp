@@ -1,14 +1,8 @@
 #include "./Button.hpp"
 #include "nbind/noconflict.h"
 
-Button::Button() : Widget() {}
-
-Button::Button(std::string label) {
+Button::Button(std::string label): Button() {
   this->get_widget()->set_label(label);
-}
-
-Gtk::Button* Button::get_widget() {
-  return &this->widget;
 }
 
 IMPLEMENT_EVENT(Button, onClick, signal_clicked)

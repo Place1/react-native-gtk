@@ -2,10 +2,6 @@
 #include "./ListBox.hpp"
 #include "./EventLoop.hpp"
 
-Gtk::ListBox* ListBox::get_widget() {
-  return &this->widget;
-}
-
 void ListBox::insert(Widget *widget, int position) {
   EventLoop::exectute_on_gtk_loop<void>([this, widget, position]() {
     this->get_widget()->insert(*widget->get_widget(), position);

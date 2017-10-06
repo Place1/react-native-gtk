@@ -3,14 +3,12 @@
 
 #include <gtkmm.h>
 #include "./Container.hpp"
+#include "./AutoBindings/BasicWidget.hpp"
 
 class Fixed : public Container {
-private:
-  Gtk::Fixed widget;
+BASIC_WIDGET(Gtk::Fixed, Fixed)
 
 public:
-  Fixed();
-  Gtk::Fixed* get_widget();
   void put(Widget *widget, int x, int y);
   void move(Widget *widget, int x, int y);
 };

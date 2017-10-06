@@ -2,14 +2,13 @@
 #define LIST_BOXx_H
 
 #include <gtkmm.h>
+#include "./AutoBindings/BasicWidget.hpp"
 #include "./Container.hpp"
 
 class ListBox : public Container {
-private:
-  Gtk::ListBox widget;
+BASIC_WIDGET(Gtk::ListBox, ListBox)
 
 public:
-  Gtk::ListBox* get_widget();
   void insert(Widget *widget, int position);
 };
 
