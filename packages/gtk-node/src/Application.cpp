@@ -27,12 +27,12 @@ void Application::run(Window *window) {
 }
 
 void Application::quit() {
+  EventLoop::stop();
   if (this->is_running) {
-    EventLoop::stop();
     EventLoop::enqueue_gtk_loop<void>([this]() {
       this->gtk_application->quit();
+      this->is_running = false;
     });
-    this->is_running = false;
   }
 }
 

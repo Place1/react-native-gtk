@@ -18,6 +18,7 @@ DEFINE_SETTER(string, setLabel)
 
 public:
   Button(std::string label);
+  void clicked();
 };
 
 #endif

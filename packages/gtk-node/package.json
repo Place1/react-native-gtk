@@ -15,7 +15,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "test": "echo 'todo write tests'",
+    "test": "jest",
     "example": "npm install && node examples/index.js",
     "install": "autogypi && npm run build",
     "build": "cmake-js build && ndts . > build/types.d.ts",
@@ -32,5 +32,21 @@
     "node-gyp": "3.6.2",
     "typescript": "^2.5.3"
   },
-  "typings": "build/types.d.ts"
+  "typings": "build/types.d.ts",
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.test.(ts|tsx|js)"
+    ]
+  },
+  "dependencies": {
+    "@types/node": "^8.0.32"
+  }
 }
