@@ -51,7 +51,7 @@ std::future<T> EventLoop::enqueue_gtk_loop(std::function<T (void)> f) {
   if (!EventLoop::is_running) {
     (*callback)->execute();
   } else {
-    gdk_threads_add_idle(gtk_call_fn<T>, callback);
+    gdk_threads_add_idle_full(G_PRIORITY_DEFAULT_IDLE, gtk_call_fn<T>, callback, NULL);
   }
   return prom->get_future();
 }

@@ -50,10 +50,15 @@ void EventLoop::start(Gtk::Application &app) {
 }
 
 void EventLoop::stop() {
-  js_event_queue_consumer_running = false;
-  EventLoop::enqueue_js_loop([]() {
-  });
-  uv_close((uv_handle_t *)(&js_thread_work), NULL);
+  if (js_event_queue_consumer_running != false) {
+    js_event_queue_consumer_running = false;
+    EventLoop::enqueue_js_loop([]() {
+    });
+    auto handle = (uv_handle_t *)(&js_thread_work);
+    if (uv_is_active(handle) != 0) {
+      uv_close(handle, NULL);
+    }
+  }
 }
 
 void uv_call_fn(uv_async_t *async) {

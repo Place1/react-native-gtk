@@ -5,8 +5,23 @@ import { EventEmitter } from 'events';
 describe('Button', () => {
   const app = new gtk.Application('asd.asd');
 
+  afterAll(() => {
+    app.quit();
+  });
+
   test('it should call the "onClick" callback when clicked', (done) => {
     const button = new gtk.Button();
+    button.onClick(() => {
+      done();
+    });
+    button.clicked();
+  });
+
+  test('it should not call old "onClick" callbacks', (done) => {
+    const button = new gtk.Button();
+    button.onClick(() => {
+      done("the old callback was called");
+    });
     button.onClick(() => {
       done();
     });
@@ -36,9 +51,5 @@ describe('Button', () => {
       clicks.push(awaitClick());
     }
     await Promise.all(clicks); // expect the promise to resolve! timeout = missed onClick event.
-  });
-
-  afterAll(() => {
-    app.quit();
   });
 });
