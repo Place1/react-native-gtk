@@ -9,11 +9,14 @@ export function render(element: any) {
   const container = new GtkContainer(window);
   const root = Renderer.createContainer(container);
 
-  const hackLayoutInterval = setInterval(() => {
-    // I haven't implemented the layout system at all
-    // yet so i'll just do a layout every 100ms
-    container.layoutChildren();
-  },                                     0);
+  const hackLayoutInterval = setInterval(
+    () => {
+      // I haven't implemented the layout system at all
+      // yet so i'll just do a layout every 100ms
+      container.layoutChildren();
+    },
+    0,
+  );
 
   // we want to quit the app when the window is closed
   // but we also need to unmount every react component

@@ -11,7 +11,7 @@ export default class View extends GtkComponent<gtk.Fixed> {
   }
 
   layoutChildren() {
-    // layout the view's widgets based on the flex layout.
+    super.layoutChildren();
     for (const child of this.children) {
       child.node.setSizeRequest(
         child.layout.getComputedWidth(),
@@ -22,9 +22,6 @@ export default class View extends GtkComponent<gtk.Fixed> {
         child.layout.getComputedLeft(),
         child.layout.getComputedTop(),
       );
-
-      // layout this child's children (recursively)
-      child.layoutChildren();
     }
   }
 }

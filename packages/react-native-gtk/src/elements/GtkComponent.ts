@@ -67,8 +67,9 @@ export default abstract class GtkComponent<
   }
 
   layoutChildren(): void {
-    // no-op
-    return undefined;
+    for (const child of this.children) {
+      child.layoutChildren();
+    }
   }
 
   private setProps(): void {
@@ -87,10 +88,19 @@ export default abstract class GtkComponent<
 
   private applyStyles(style: StyleAttributes) {
     const copy = {...style};
-    const expanded = expandStyleShorthands(copy);
-    flex(expanded, this.layout);
-    if (expanded.width !== undefined && expanded.height !== undefined) {
-      this.node.setSizeRequest(expanded.width, expanded.height);
+    const expandedStyles = expandStyleShorthands(copy);
+
+    // apply flexbox styles
+    flex(expandedStyles, this.layout);
+
+    // set widget size request
+    let { width, height } = expandedStyles;
+    if (width === undefined) {
+      width = -1; // -1 tell's GTK to unset the size request
     }
+    if (height === undefined) {
+      height = -1; // -1 tell's GTK to unset the size request
+    }
+    this.node.setSizeRequest(width, height);
   }
 }

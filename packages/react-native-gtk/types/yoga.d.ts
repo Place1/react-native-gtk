@@ -20,8 +20,10 @@ declare module 'yoga-layout' {
     removeChild(child: Node): void;
     getChildCount(): number;
     getChild(childIndex: number): Node;
+    setDisplay(display: any): void;
     setFlexDirection(direction: any): void;
     setJustifyContent(justification: any): void;
+    setAlignItems(alignment: any): void;
     setWidth(width: number): void;
     setHeight(height: number): void;
     setMargin(edge: any, value: number): void;
@@ -36,16 +38,27 @@ declare module 'yoga-layout' {
   export const DIRECTION_LTR: any;
   export const FLEX_DIRECTION_ROW: any;
   export const FLEX_DIRECTION_COLUMN: any;
+  export const FLEX_DIRECTION_ROW_REVERSE: any;
+  export const FLEX_DIRECTION_COLUMN_REVERSE: any;
   export const JUSTIFY_SPACE_AROUND: any;
-  export const ALIGN_SPACE_AROUND: any;
   export const JUSTIFY_SPACE_BETWEEN: any;
+  export const JUSTIFY_FLEX_START: any;
+  export const JUSTIFY_FLEX_END: any;
+  export const JUSTIFY_CENTER: any;
+  export const ALIGN_SPACE_AROUND: any;
+  export const ALIGN_STRETCH: any;
+  export const ALIGN_BASELINE: any;
   export const ALIGN_SPACE_BETWEEN: any;
+  export const ALIGN_FLEX_END: any;
+  export const ALIGN_FLEX_START: any;
+  export const ALIGN_CENTER: any;
   export const EDGE_TOP: any;
   export const EDGE_RIGHT: any;
   export const EDGE_BOTTOM: any;
   export const EDGE_LEFT: any;
   export const MEASURE_MODE_EXACTLY: any;
   export const MEASURE_MODE_AT_MOST: any;
+  export const DISPLAY_FLEX: any;
 
   export interface MeasureFuncion {
     (width: number, widthMode: any, height: number, heightMode: any): Partial<YogaSize>;

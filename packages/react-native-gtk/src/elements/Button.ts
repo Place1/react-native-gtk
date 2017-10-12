@@ -10,6 +10,21 @@ export default class Button extends GtkComponent<gtk.Button, ButtonProps> {
 
   node = new gtk.Button();
 
+  constructor(props: ButtonProps) {
+    super(props);
+    this.node.onSizeAllocate(this.onSizeAllocate);
+  }
+
+  private onSizeAllocate = (allocation: gtk.Allocation) => {
+    const { width, height } = this.props.style!;
+    if (width === undefined) {
+      this.layout.setWidth(allocation.getWidth());
+    }
+    if (height === undefined) {
+      this.layout.setHeight(allocation.getHeight());
+    }
+  }
+
   setProp(prop: string, value: any) {
     switch (prop) {
       case 'label':

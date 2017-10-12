@@ -42,22 +42,25 @@ export default class GtkContainer {
 // tree of layout nodes as a json object. It's useful
 // to call from the debugger to see what Yoga thinks the
 // layout should look like vs. what the layout actually is.
-function debugLayoutAux(node: Node) {
+function debugLayoutAux(component: GtkComponent | GtkContainer) {
+  const layoutNode = (component as any).layout;
   const layout: any = {};
-  layout.width = node.getComputedWidth();
-  layout.height = node.getComputedHeight();
-  layout.left = node.getComputedLeft();
-  layout.top = node.getComputedTop();
-  if (node.getChildCount() === 0) {
+  layout.component = component.constructor.name;
+  layout.width = layoutNode.getComputedWidth();
+  layout.height = layoutNode.getComputedHeight();
+  layout.left = layoutNode.getComputedLeft();
+  layout.top = layoutNode.getComputedTop();
+  if (layoutNode.getChildCount() === 0) {
     return layout;
   }
   layout.children = [];
-  for (let i = 0; i < node.getChildCount(); i++) {
-    layout.children.push(debugLayoutAux(node.getChild(i)));
+  const childCount = (component as any).children.length;
+  for (let i = 0; i < childCount; i++) {
+    layout.children.push(debugLayoutAux((component as any).children[i]));
   }
   return layout;
 }
-(global as any).debugLayout = (node: Node) => {
-  const result = debugLayoutAux(node);
+(global as any).debugLayout = (component: GtkComponent | GtkContainer) => {
+  const result = debugLayoutAux(component);
   console.log(JSON.stringify(result, undefined, 2)); // tslint:disable-line no-magic-numbers no-console
 };

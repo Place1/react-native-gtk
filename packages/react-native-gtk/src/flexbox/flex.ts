@@ -4,6 +4,7 @@ import StyleAttributes from '../style/StyleAttributes';
 import cssToYogaValue from './cssToYogaValue';
 
 export default function flex(style: StyleAttributes, styleNode: Yoga.Node) {
+  styleNode.setDisplay(Yoga.DISPLAY_FLEX);
   for (const [key, value] of Object.entries(style)) {
     switch (key) {
       case 'flex':
@@ -16,6 +17,10 @@ export default function flex(style: StyleAttributes, styleNode: Yoga.Node) {
 
       case 'justifyContent':
         styleNode.setJustifyContent(cssToYogaValue(key, value));
+        break;
+
+      case 'alignItems':
+        styleNode.setAlignItems(cssToYogaValue(key, value));
         break;
 
       case 'width':

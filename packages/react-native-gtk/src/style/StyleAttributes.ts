@@ -2,6 +2,7 @@ export default interface StyleAttributes {
   flex?: number;
   flexDirection?: 'row' | 'column';
   justifyContent?: 'space-between' | 'space-around';
+  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch';
 
   width?: number;
   height?: number;

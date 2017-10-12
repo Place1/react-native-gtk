@@ -58,7 +58,7 @@ class App extends React.Component<{}, State> {
         <ListBox>
           {this.state.todos.map((todo, i) => (
             <ListBoxRow key={i}>
-              <View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Label text={todo.title} />
                 <Button
                   label="X"
