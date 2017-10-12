@@ -5,6 +5,7 @@ import { default as GtkComponent, GtkProps } from './GtkComponent';
 export interface TextInputProps extends GtkProps {
   value?: string;
   onTextChanged?(value: string): void;
+  onSubmitEditing?(): void;
 }
 
 export default class TextInput extends GtkComponent<gtk.Entry, TextInputProps> {
@@ -18,6 +19,10 @@ export default class TextInput extends GtkComponent<gtk.Entry, TextInputProps> {
 
       case 'onTextChanged':
         this.node.onChange(() => value(this.node.getText()));
+        break;
+
+      case 'onSubmitEditing':
+        this.node.onActivate(value);
         break;
     }
   }

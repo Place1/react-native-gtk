@@ -63,4 +63,5 @@ function debugLayoutAux(component: GtkComponent | GtkContainer) {
 (global as any).debugLayout = (component: GtkComponent | GtkContainer) => {
   const result = debugLayoutAux(component);
   console.log(JSON.stringify(result, undefined, 2)); // tslint:disable-line no-magic-numbers no-console
+  return result;
 };

@@ -58,7 +58,7 @@ class App extends React.Component<{}, State> {
         <ListBox>
           {this.state.todos.map((todo, i) => (
             <ListBoxRow key={i}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Label text={todo.title} />
                 <Button
                   label="X"
@@ -73,6 +73,7 @@ class App extends React.Component<{}, State> {
             style={{ height: 50, width: 200 }}
             value={this.state.draftTodo}
             onTextChanged={this.onDraftTodoChanged}
+            onSubmitEditing={this.createTodo}
           />
           <Button
             style={{ height: 50, width: 70, marginLeft: 10 }}
