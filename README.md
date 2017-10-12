@@ -30,3 +30,12 @@ cd packages/gtk-node && npm run example
 
 cd packages/react-native-gtk && npm run example
 ```
+
+## React GTK Todo App:
+There is an example Todo App in `packages/react-native-gtk/example/TodoApp.tsx`.
+You can run the app by:
+```
+lerna bootstrap
+cd packages/react-native-gtk
+./node_modules/.bin/tsnode ./examples/TodoApp.tsx
+```
