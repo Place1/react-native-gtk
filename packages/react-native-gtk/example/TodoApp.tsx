@@ -42,8 +42,14 @@ class App extends React.Component<{}, State> {
     }
   }
 
+  removeTodo = (index: number) => {
+    const todos = this.state.todos.slice();
+    todos.splice(index, 1);
+    this.setState({ todos });
+  }
+
   componentDidUpdate() {
-    // console.log(JSON.stringify(this.state, undefined, 2));
+    console.log(JSON.stringify(this.state, undefined, 2));
   }
 
   render() {
@@ -52,7 +58,13 @@ class App extends React.Component<{}, State> {
         <ListBox>
           {this.state.todos.map((todo, i) => (
             <ListBoxRow key={i}>
-              <Label text={todo.title} />
+              <View>
+                <Label text={todo.title} />
+                <Button
+                  label="X"
+                  onClick={() => this.removeTodo(i)}
+                />
+              </View>
             </ListBoxRow>
           ))}
         </ListBox>

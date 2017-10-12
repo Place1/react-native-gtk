@@ -17,6 +17,7 @@ declare module 'yoga-layout' {
     getComputedHeight(): number;
     getComputedWidth(): number;
     insertChild(child: Node, position: number): void;
+    removeChild(child: Node): void;
     getChildCount(): number;
     getChild(childIndex: number): Node;
     setFlexDirection(direction: any): void;

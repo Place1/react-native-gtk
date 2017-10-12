@@ -60,8 +60,10 @@ export default abstract class GtkComponent<
   }
 
   removeChild(child: GtkComponent): void {
-    // no-op
-    return undefined;
+    // O(n) removal of children needs to be optimised at some point! (react keys?)
+    const index = this.children.indexOf(child);
+    this.children.splice(index, 1);
+    this.layout.removeChild(child.layout);
   }
 
   layoutChildren(): void {

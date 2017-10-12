@@ -12,4 +12,9 @@ export default class ListBox extends GtkComponent<gtk.ListBox, ListBoxProps> {
     super.appendChild(child);
     this.node.add(child.node);
   }
+
+  removeChild(child: GtkComponent) {
+    super.removeChild(child);
+    this.node.remove(child.node);
+  }
 }
