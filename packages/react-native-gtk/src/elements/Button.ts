@@ -1,12 +1,12 @@
 import * as gtk from 'gtk-node';
-import { default as GtkComponent, GtkProps } from './GtkComponent';
+import { default as GtkElement, GtkProps } from './GtkElement';
 
 export interface ButtonProps extends GtkProps {
   label?: string;
   onClick?(): void;
 }
 
-export default class Button extends GtkComponent<gtk.Button, ButtonProps> {
+export default class Button extends GtkElement<gtk.Button, ButtonProps> {
 
   node = new gtk.Button();
 

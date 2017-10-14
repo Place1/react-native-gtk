@@ -1,14 +1,9 @@
 import * as gtk from 'gtk-node';
 
-import GtkComponent from './GtkComponent';
+import GtkContainerElement from './GtkContainerElement';
 
-export default class View extends GtkComponent<gtk.Fixed> {
+export default class View extends GtkContainerElement<gtk.Fixed> {
   node = new gtk.Fixed();
-
-  appendChild(child: GtkComponent) {
-    super.appendChild(child);
-    this.node.add(child.node);
-  }
 
   layoutChildren() {
     super.layoutChildren();

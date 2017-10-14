@@ -1,6 +1,6 @@
 import * as gtk from 'gtk-node';
 
-import { default as GtkComponent, GtkProps } from './GtkComponent';
+import { default as GtkElement, GtkProps } from './GtkElement';
 
 export interface TextInputProps extends GtkProps {
   value?: string;
@@ -8,7 +8,7 @@ export interface TextInputProps extends GtkProps {
   onSubmitEditing?(): void;
 }
 
-export default class TextInput extends GtkComponent<gtk.Entry, TextInputProps> {
+export default class TextInput extends GtkElement<gtk.Entry, TextInputProps> {
   node = new gtk.Entry();
 
   setProp(prop: string, value: any) {

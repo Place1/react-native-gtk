@@ -1,15 +1,15 @@
 import Button from './Button';
-import GtkComponent from './GtkComponent';
+import GtkElement from './GtkElement';
 import Label from './Label';
 import ListBox from './ListBox';
 import ListBoxRow from './ListBoxRow';
 import TextInput from './TextInput';
 import View from './View';
 
-export { default as GtkComponent } from './GtkComponent';
+export { default as GtkElement } from './GtkElement';
 
 export interface IntrinsicElements {
-  [key: string]: new (...args: any[]) => GtkComponent;
+  [key: string]: new (...args: any[]) => GtkElement;
 }
 
 export const elements: IntrinsicElements = {

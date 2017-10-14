@@ -1,6 +1,6 @@
 import GtkContainer from './GtkContainer';
 import createElement from './createElement';
-import { GtkComponent } from './elements';
+import { GtkElement } from './elements';
 
 // tslint:disable-next-line
 const ReactFiberReconciler = require('react-dom/lib/ReactFiberReconciler');
@@ -25,30 +25,30 @@ const Renderer = ReactFiberReconciler({
   },
 
   appendInitialChild(
-    parentInstance: GtkComponent | GtkComponent,
-    child: GtkComponent,
+    parentInstance: GtkElement | GtkElement,
+    child: GtkElement,
   ) {
     parentInstance.appendChild(child);
   },
 
   appendChild(
-    parentInstance: GtkContainer | GtkComponent,
-    child: GtkComponent,
+    parentInstance: GtkContainer | GtkElement,
+    child: GtkElement,
   ) {
     parentInstance.appendChild(child);
   },
 
   removeChild(
-    parentInstance: GtkComponent | GtkContainer,
-    child: GtkComponent,
+    parentInstance: GtkElement | GtkContainer,
+    child: GtkElement,
   ) {
     parentInstance.removeChild(child);
   },
 
   insertBefore(
-    parentInstance: GtkComponent,
-    child: GtkComponent,
-    beforeChild: GtkComponent,
+    parentInstance: GtkElement,
+    child: GtkElement,
+    beforeChild: GtkElement,
   ) {
     return undefined;
   },
@@ -56,7 +56,7 @@ const Renderer = ReactFiberReconciler({
   // finalizeInitialChildren is the final HostConfig method called before
   // flushing the root component to the host environment
   finalizeInitialChildren(
-    instance: GtkComponent,
+    instance: GtkElement,
     type: string,
     props: any,
     rootContainerInstance: GtkContainer,
@@ -69,7 +69,7 @@ const Renderer = ReactFiberReconciler({
   // can reuse this work even if it pauses or aborts rendering a subset of the
   // tree.
   prepareUpdate(
-    instance: GtkComponent,
+    instance: GtkElement,
     type: string,
     oldProps: any,
     newProps: any,
@@ -80,7 +80,7 @@ const Renderer = ReactFiberReconciler({
   },
 
   commitUpdate(
-    instance: GtkComponent,
+    instance: GtkElement,
     updatePayload: boolean,
     type: string,
     oldProps: any,
@@ -93,7 +93,7 @@ const Renderer = ReactFiberReconciler({
   // commitMount is called after initializeFinalChildren *if*
   // `initializeFinalChildren` returns true.
   commitMount(
-    instance: GtkComponent,
+    instance: GtkElement,
     type: string,
     newProps: any,
     internalInstanceHandle: UNKNOWN_TYPE,

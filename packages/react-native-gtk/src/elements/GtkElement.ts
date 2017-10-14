@@ -8,10 +8,9 @@ import { expandStyleShorthands } from '../style/styleShorthands';
 export interface GtkProps {
   key?: string | number;
   style?: StyleAttributes;
-  children?: any; // FIXME what type should this be?
 }
 
-export default abstract class GtkComponent<
+export default abstract class GtkElement<
   NodeType extends gtk.Widget = gtk.Widget, Props extends GtkProps = GtkProps> {
 
   static defaultProps: GtkProps = {
@@ -22,7 +21,7 @@ export default abstract class GtkComponent<
 
   abstract node: NodeType;
   props: Props;
-  children = new Array<GtkComponent>();
+  children = new Array<GtkElement>();
   layout: Node = Node.createDefault();
 
   constructor(props: Props) {
@@ -31,11 +30,11 @@ export default abstract class GtkComponent<
 
   private acceptProps(props: any) {
     this.props = {
-      ...(this.constructor as typeof GtkComponent).defaultProps,
+      ...(this.constructor as typeof GtkElement).defaultProps,
       ...props,
     };
     this.props.style = {
-      ...(this.constructor as typeof GtkComponent).defaultStyle,
+      ...(this.constructor as typeof GtkElement).defaultStyle,
       ...this.props.style,
     };
   }
@@ -54,12 +53,12 @@ export default abstract class GtkComponent<
     this.node.showAll(); // if chil nodes are added we want to show them automatically!
   }
 
-  appendChild(child: GtkComponent): void {
+  appendChild(child: GtkElement): void {
     this.children.push(child);
     this.layout.insertChild(child.layout, this.layout.getChildCount());
   }
 
-  removeChild(child: GtkComponent): void {
+  removeChild(child: GtkElement): void {
     // O(n) removal of children needs to be optimised at some point! (react keys?)
     const index = this.children.indexOf(child);
     this.children.splice(index, 1);

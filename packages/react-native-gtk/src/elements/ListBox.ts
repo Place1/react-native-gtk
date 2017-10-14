@@ -1,20 +1,7 @@
 import * as gtk from 'gtk-node';
-import { default as GtkComponent, GtkProps } from './GtkComponent';
 
-export interface ListBoxProps extends GtkProps {
+import GtkContainerElement from './GtkContainerElement';
 
-}
-
-export default class ListBox extends GtkComponent<gtk.ListBox, ListBoxProps> {
+export default class ListBox extends GtkContainerElement<gtk.ListBox> {
   node = new gtk.ListBox();
-
-  appendChild(child: GtkComponent) {
-    super.appendChild(child);
-    this.node.add(child.node);
-  }
-
-  removeChild(child: GtkComponent) {
-    super.removeChild(child);
-    this.node.remove(child.node);
-  }
 }

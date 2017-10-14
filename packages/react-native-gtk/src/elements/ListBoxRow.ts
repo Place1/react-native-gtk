@@ -1,21 +1,12 @@
 import * as gtk from 'gtk-node';
 
-import { default as GtkComponent, GtkProps } from './GtkComponent';
+import GtkContainerElement from './GtkContainerElement';
 
-export interface ListBoxRowProps extends GtkProps {
-
-}
-
-export default class ListBoxRow extends GtkComponent<gtk.ListBoxRow, ListBoxRowProps> {
+export default class ListBoxRow extends GtkContainerElement<gtk.ListBoxRow> {
 
   static defaultStyle = {
     padding: 2,
   };
 
   node = new gtk.ListBoxRow();
-
-  appendChild(child: GtkComponent) {
-    super.appendChild(child);
-    this.node.add(child.node);
-  }
 }

@@ -1,11 +1,11 @@
-import { default as GtkComponent, GtkProps } from './GtkComponent';
+import { default as GtkElement, GtkProps } from './GtkElement';
 import * as gtk from 'gtk-node';
 
 export interface LabelProps extends GtkProps {
   text?: string;
 }
 
-export default class Label extends GtkComponent<gtk.Label, LabelProps> {
+export default class Label extends GtkElement<gtk.Label, LabelProps> {
   node = new gtk.Label();
 
   constructor(props: LabelProps) {
