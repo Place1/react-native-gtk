@@ -14,22 +14,18 @@
     "build": "build"
   },
   "scripts": {
-    "prepublish": "npm run build",
+    "postinstall": "npm run build",
     "test": "jest",
     "example": "npm install && node examples/index.js",
-    "install": "autogypi && npm run build",
     "build": "cmake-js build && ndts . > build/types.d.ts",
     "build:debug": "cmake-js build --debug && ndts . > build/types.d.ts",
     "build:docs": "npm run build && typedoc --includeDeclarations --excludeExternals --theme minimal --mode file --out docs/ ./",
     "clean": "rm -r ./build || true"
   },
   "devDependencies": {
+    "@types/node": "^8.0.32",
     "@types/jest": "^21.1.2",
-    "autogypi": "0.2.2",
-    "cmake-js": "^3.5.0",
     "jest": "^21.2.1",
-    "nbind": "0.3.13",
-    "node-gyp": "3.6.2",
     "typescript": "^2.5.3"
   },
   "typings": "build/types.d.ts",
@@ -47,6 +43,7 @@
     ]
   },
   "dependencies": {
-    "@types/node": "^8.0.32"
+    "cmake-js": "^3.5.0",
+    "nbind": "0.3.13"
   }
 }
