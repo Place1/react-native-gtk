@@ -5,6 +5,12 @@ This repository is a mono-repo containing the 'react-native-gtk' npm package and
 The 'gtk-node' package is a library that provides bindings for the GTK 3 native UI toolkit.
 The 'react-native-gtk' package allows developers to write ReactJS apps for desktop with native UI components!
 
+## react-native-gtk
+[packages/react-native-gtk](./packages/react-native-gtk/)
+
+## gtk-node
+[packages/gtk-node](./packages/gtk-node/)
+
 ## Developing
 You can setup the project locally in 2 commands!
 ```

@@ -1,6 +1,11 @@
-# gtk-node (WIP)
+# gtk-node
 
 This project is a work in progress
+
+## System Dependencies
+- gtk+-3.0
+- gtkmm-3.0
+- sigc++-2.0
 
 ## Setup
 ```

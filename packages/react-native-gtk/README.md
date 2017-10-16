@@ -1,4 +1,4 @@
-# React GTK3 (WIP)
+# React Native Gtk
 
 This project is a work in progress
 
