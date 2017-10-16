@@ -1,3 +1,4 @@
+// tslint:disable-next-line
 /// <reference path="../types/jsx.d.ts" />
 
 // React Renderer

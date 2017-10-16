@@ -18,9 +18,11 @@
   void CLASS::JS_EVENT_NAME(nbind::cbFunction &cb) { \
     this->JS_EVENT_NAME ## Callback = std::make_unique<nbind::cbFunction>(cb); \
     this->JS_EVENT_NAME ## Connection.disconnect(); \
-    this->JS_EVENT_NAME ## Connection = this->get_widget()->GTK_SIGNAL_NAME().connect([this]() { \
-      EventLoop::enqueue_js_loop([this]() { \
-        (*this->JS_EVENT_NAME ## Callback)(); \
+    EventLoop::exectute_on_gtk_loop<void>([this]() { \
+      this->JS_EVENT_NAME ## Connection = this->get_widget()->GTK_SIGNAL_NAME().connect([this]() { \
+        EventLoop::enqueue_js_loop([this]() { \
+          (*this->JS_EVENT_NAME ## Callback)(); \
+        }); \
       }); \
     }); \
   }

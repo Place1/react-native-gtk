@@ -18,7 +18,7 @@
     "prepublish": "npm run build",
     "test": "jest",
     "lint": "tslint 'src/**/*.{ts,tsx}' --project ./",
-    "build": "tsc",
+    "build": "npm run clean && tsc",
     "example": "ts-node example/index.tsx",
     "clean": "rm -r ./dist"
   },
