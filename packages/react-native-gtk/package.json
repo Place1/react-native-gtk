@@ -1,6 +1,6 @@
 {
   "name": "react-native-gtk",
-  "version": "0.0.1-prerelease.9",
+  "version": "0.0.1-prerelease.10",
   "description": "react native for building desktop apps with GTK3",
   "author": "James Batt",
   "license": "",
@@ -35,7 +35,7 @@
     "typescript": "^2.5.2"
   },
   "dependencies": {
-    "gtk-node": "^0.0.1-prerelease.9",
+    "gtk-node": "^0.0.1-prerelease.10",
     "react-dom": "16.0.0-alpha.6",
     "yoga-layout": "1.6.0"
   },
