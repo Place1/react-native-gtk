@@ -1,4 +1,10 @@
 export default interface StyleAttributes {
+  position?: 'absolute' | 'relative';
+  left?: number;
+  right?: number;
+  top?: number;
+  bottom?: number;
+
   flex?: number;
   flexDirection?: 'row' | 'column';
   justifyContent?: 'space-between' | 'space-around';

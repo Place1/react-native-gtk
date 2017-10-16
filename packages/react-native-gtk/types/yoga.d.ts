@@ -20,6 +20,8 @@ declare module 'yoga-layout' {
     removeChild(child: Node): void;
     getChildCount(): number;
     getChild(childIndex: number): Node;
+    setPosition(edge: any, value: any): void;
+    setPositionType(position: any): void;
     setDisplay(display: any): void;
     setFlexDirection(direction: any): void;
     setJustifyContent(justification: any): void;
@@ -35,6 +37,8 @@ declare module 'yoga-layout' {
     freeRecursive(): void;
   }
 
+  export const POSITION_TYPE_RELATIVE: any;
+  export const POSITION_TYPE_ABSOLUTE: any;
   export const DIRECTION_LTR: any;
   export const FLEX_DIRECTION_ROW: any;
   export const FLEX_DIRECTION_COLUMN: any;

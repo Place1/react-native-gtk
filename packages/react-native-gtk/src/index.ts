@@ -1,3 +1,5 @@
+/// <reference path="../types/jsx.d.ts" />
+
 // React Renderer
 export { render, unmountComponentAtNode } from './ReactNativeGtk';
 

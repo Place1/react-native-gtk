@@ -1,6 +1,6 @@
 {
   "name": "gtk-node",
-  "version": "0.0.1-prerelease.7",
+  "version": "0.0.1-prerelease.8",
   "description": "Nodejs bindings for GTK3",
   "author": "James Batt",
   "license": "",
@@ -23,8 +23,8 @@
     "clean": "rm -r ./build || true"
   },
   "devDependencies": {
-    "@types/node": "^8.0.32",
     "@types/jest": "^21.1.2",
+    "@types/node": "^8.0.32",
     "jest": "^21.2.1",
     "typescript": "^2.5.3"
   },

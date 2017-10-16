@@ -1,10 +1,11 @@
 {
   "name": "react-native-gtk",
-  "version": "0.0.1-prerelease.7",
+  "version": "0.0.1-prerelease.8",
   "description": "react native for building desktop apps with GTK3",
   "author": "James Batt",
   "license": "",
   "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "readme": "README.md",
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
     "test": "jest",
     "lint": "tslint 'src/**/*.{ts,tsx}' --project ./",
     "build": "tsc",
-    "example": "ts-node example/index.tsx"
+    "example": "ts-node example/index.tsx",
+    "clean": "rm -r ./dist"
   },
   "devDependencies": {
     "@types/jest": "^21.1.1",
@@ -33,7 +35,7 @@
     "typescript": "^2.5.2"
   },
   "dependencies": {
-    "gtk-node": "^0.0.1-prerelease.7",
+    "gtk-node": "^0.0.1-prerelease.8",
     "react-dom": "16.0.0-alpha.6",
     "yoga-layout": "1.6.0"
   },

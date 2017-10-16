@@ -7,6 +7,26 @@ export default function flex(style: StyleAttributes, styleNode: Yoga.Node) {
   styleNode.setDisplay(Yoga.DISPLAY_FLEX);
   for (const [key, value] of Object.entries(style)) {
     switch (key) {
+      case 'position':
+        styleNode.setPositionType(cssToYogaValue(key, value));
+        break;
+
+      case 'top':
+        styleNode.setPosition(Yoga.EDGE_TOP, value);
+        break;
+
+      case 'right':
+        styleNode.setPosition(Yoga.EDGE_RIGHT, value);
+        break;
+
+      case 'bottom':
+        styleNode.setPosition(Yoga.EDGE_BOTTOM, value);
+        break;
+
+      case 'left':
+        styleNode.setPosition(Yoga.EDGE_LEFT, value);
+        break;
+
       case 'flex':
         styleNode.setFlex(value);
         break;

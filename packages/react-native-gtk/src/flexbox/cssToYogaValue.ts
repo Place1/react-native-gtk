@@ -6,6 +6,12 @@ function isAlignAttribute(attribute: string) {
 
 export default function cssToYogaValue(attribute: string, value: string): any {
   switch (value) {
+    case 'relative':
+      return Yoga.POSITION_TYPE_RELATIVE;
+
+    case 'absolute':
+      return Yoga.POSITION_TYPE_ABSOLUTE;
+
     case 'row':
       return Yoga.FLEX_DIRECTION_ROW;
 
