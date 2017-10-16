@@ -17,17 +17,6 @@ describe('Button', () => {
     button.clicked();
   });
 
-  test('it should not call old "onClick" callbacks', (done) => {
-    const button = new gtk.Button();
-    button.onClick(() => {
-      done("the old callback was called");
-    });
-    button.onClick(() => {
-      done();
-    });
-    button.clicked();
-  });
-
   test('it should call the "onClick" callback once for every click', async () => {
     const button = new gtk.Button();
     const simulatedClicks = 1000;
