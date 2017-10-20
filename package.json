@@ -1,6 +1,10 @@
 {
 	"scripts": {
-		"precommit": "lerna run lint && lerna run build && lerna run test"
+		"precommit": "lerna run lint && lerna run build && lerna run test",
+		"clean": "lerna run clean",
+		"bootstrap": "lerna bootstrap",
+		"lint": "lerna run lint",
+		"test": "lerna run test"
 	},
 	"devDependencies": {
 		"husky": "^0.14.3",

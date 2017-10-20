@@ -9,14 +9,6 @@ describe('Button', () => {
     app.quit();
   });
 
-  test('it should call the "onClick" callback when clicked', (done) => {
-    const button = new gtk.Button();
-    button.onClick(() => {
-      done();
-    });
-    button.clicked();
-  });
-
   test('it should call the "onClick" callback once for every click', async () => {
     const button = new gtk.Button();
     const simulatedClicks = 1000;

@@ -15,9 +15,14 @@ The 'react-native-gtk' package allows developers to write ReactJS apps for deskt
 You can setup the project locally in 2 commands!
 ```
 npm install
-./node_modules/.bin/lerna bootstrap
+npm run bootstrap # uses 'lerna' to install all packages' dependencies and cross link them.
 ```
-_you can also install `lerna` globally if you like._
+
+## Check/Test
+```
+npm run lint
+npm run test
+```
 
 ## Examples
 Each package includes a quick example application. You can run it using these commands:
