@@ -17,9 +17,10 @@
     "postinstall": "npm run build",
     "test": "jest",
     "example": "npm install && node examples/index.js",
-    "build": "cmake-js build && ndts . > build/types.d.ts",
-    "build:debug": "cmake-js build --debug && ndts . > build/types.d.ts",
-    "build:docs": "npm run build && typedoc --includeDeclarations --excludeExternals --theme minimal --mode file --out docs/ ./",
+    "configure": "cmake-js configure",
+    "build": "npm run configure && cmake-js build && ndts . > build/types.d.ts",
+    "build:debug": "npm run configure && cmake-js build --debug && ndts . > build/types.d.ts",
+    "build:docs": "npm run configure && npm run build && typedoc --includeDeclarations --excludeExternals --theme minimal --mode file --out docs/ ./",
     "clean": "rm -r ./build || true"
   },
   "devDependencies": {
