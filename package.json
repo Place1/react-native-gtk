@@ -1,13 +1,58 @@
 {
-	"scripts": {
-		"precommit": "npm run bootstrap && npm run lint && npm run test",
-		"clean": "lerna run clean",
-		"bootstrap": "lerna bootstrap",
-		"lint": "lerna run lint",
-		"test": "lerna run test"
-	},
-	"devDependencies": {
-		"husky": "^0.14.3",
-		"lerna": "^2.4.0"
-	}
+  "name": "react-native-gtk",
+  "version": "0.0.1-prerelease.10",
+  "description": "react native for building desktop apps with GTK3",
+  "author": "James Batt",
+  "license": "",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Place1/react-native-gtk"
+  },
+  "directories": {
+    "dist": "dist"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "jest",
+    "lint": "tslint 'src/**/*.{ts,tsx}' --project ./",
+    "build": "npm run clean && tsc",
+    "example": "ts-node example/TodoApp.tsx",
+    "clean": "rm -r ./dist || true"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.1",
+    "@types/node": "^8.0.28",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "jest": "^21.2.1",
+    "react": "16.0.0-alpha.6",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "node-gir": "^0.1.2",
+    "react-dom": "16.0.0-alpha.6",
+    "yoga-layout": "1.6.0"
+  },
+  "peerDependencies": {
+    "react": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.test.(ts|tsx|js)"
+    ]
+  }
 }

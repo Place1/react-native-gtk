@@ -42,6 +42,7 @@ const Renderer = ReactFiberReconciler({
     parentInstance: GtkElement | GtkContainer,
     child: GtkElement,
   ) {
+    child.unmount();
     parentInstance.removeChild(child);
   },
 

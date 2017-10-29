@@ -4,6 +4,7 @@ import { Node } from 'yoga-layout';
 import flex from '../flexbox/flex';
 import StyleAttributes from '../style/StyleAttributes';
 import { expandStyleShorthands } from '../style/styleShorthands';
+import * as signals from './util/signals';
 
 export interface GtkProps {
   key?: string | number;
@@ -56,6 +57,10 @@ export default abstract class GtkElement<
   appendChild(child: GtkElement): void {
     this.children.push(child);
     this.layout.insertChild(child.layout, this.layout.getChildCount());
+  }
+
+  unmount(): void {
+    signals.disconnectAll(this.node);
   }
 
   removeChild(child: GtkElement): void {

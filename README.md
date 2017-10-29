@@ -1,52 +1,44 @@
 # React Native GTK (WIP)
 [![CircleCI](https://circleci.com/gh/Place1/react-native-gtk/tree/master.svg?style=shield)](https://circleci.com/gh/Place1/react-native-gtk/tree/master)
 
-This repository is a mono-repo containing the 'react-native-gtk' npm package and the 'gtk-node' npm package.
-The 'gtk-node' package is a library that provides bindings for the GTK 3 native UI toolkit.
-The 'react-native-gtk' package allows developers to write ReactJS apps for desktop with native UI components!
-
-## react-native-gtk
-[packages/react-native-gtk](./packages/react-native-gtk/)
-
-## gtk-node
-[packages/gtk-node](./packages/gtk-node/)
+React Native GTK allows developers to write ReactJS apps for desktop with native UI elements!
 
 ## Developing
-You can setup the project locally in 2 commands!
+You can setup the project locally to develop in 1 command!
 ```
 npm install
-npm run bootstrap # uses 'lerna' to install all packages' dependencies and cross link them.
 ```
 
 ## Check/Test
 ```
 npm run lint
-npm run test
+npm test
 ```
 
 ## Examples
-Each package includes a quick example application. You can run it using these commands:
+There are example applications in the `examples/` directory. You can run any of these examples
+with the following command:
 ```
-lerna run --scope gtk-node example
+./node_modules/.bin/ts-node ./examples/<file>.tsx
 
-# and
+# e.g. running the todo app
 
-lerna run --scope react-native-gtk example
-
-# or if you like, you can just run the npm scripts directly
-
-cd packages/gtk-node && npm run example
-
-# and
-
-cd packages/react-native-gtk && npm run example
+./node_modules/.bin/ts-node ./examples/TodoApp.tsx
 ```
 
-## React GTK Todo App:
-There is an example Todo App in `packages/react-native-gtk/example/TodoApp.tsx`.
-You can run the app by:
+## Debug / develop the GI Bindings
+This package makes use of [node-gir](https://github.com/Place1/node-gir). The node-gir package provides the
+[GObject Introspection](https://wiki.gnome.org/Projects/GObjectIntrospection) bindings that this library uses
+to interact with [GTK](https://developer.gnome.org/gtk3/stable/). In some cases you might want to
+debug/develop these two libraries (node-gir and react-native-gtk) together. Thankfully NPM provides a nice
+tool to do this called `npm link`
+
 ```
-lerna bootstrap
-cd packages/react-native-gtk
-./node_modules/.bin/tsnode ./examples/TodoApp.tsx
+git clone https://github.com/Place1/react-native-gtk
+git clone https://github.com/Place1/node-gir
+
+cd react-native-gtk
+npm link ../node-gir
+
+# now 'react-native-gtk' will use your local copy of node-gir!
 ```
