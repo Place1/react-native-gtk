@@ -1,4 +1,4 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 
 import { default as GtkElement, GtkProps } from './GtkElement';
 
@@ -7,7 +7,7 @@ export interface GtkContainerProps extends GtkProps {
 }
 
 export default abstract class GtkContainerElement<
-  NodeType extends gtk.Container = gtk.Container,
+  NodeType extends Gtk.Container = Gtk.Container,
   Props extends GtkContainerProps = GtkContainerProps
 > extends GtkElement<NodeType, Props> {
 

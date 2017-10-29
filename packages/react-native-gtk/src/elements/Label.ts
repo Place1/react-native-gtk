@@ -1,25 +1,26 @@
 import { default as GtkElement, GtkProps } from './GtkElement';
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
+import * as signals from './util/signals';
 
 export interface LabelProps extends GtkProps {
   text?: string;
 }
 
-export default class Label extends GtkElement<gtk.Label, LabelProps> {
-  node = new gtk.Label();
+export default class Label extends GtkElement<Gtk.Label, LabelProps> {
+  node = new Gtk.Label();
 
   constructor(props: LabelProps) {
     super(props);
-    this.node.onSizeAllocate(this.onSizeAllocate);
+    signals.connect(this.node, 'size-allocate', this.onSizeAllocate); // TODO: disconnect
   }
 
-  private onSizeAllocate = (allocation: gtk.Allocation) => {
+  private onSizeAllocate = () => {
     const { width, height } = this.props.style!;
     if (width === undefined) {
-      this.layout.setWidth(allocation.getWidth());
+      this.layout.setWidth(this.node.getAllocatedWidth());
     }
     if (height === undefined) {
-      this.layout.setHeight(allocation.getHeight());
+      this.layout.setHeight(this.node.getAllocatedHeight());
     }
   }
 

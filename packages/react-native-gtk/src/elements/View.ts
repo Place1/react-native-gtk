@@ -1,9 +1,9 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 
 import GtkContainerElement from './GtkContainerElement';
 
-export default class View extends GtkContainerElement<gtk.Fixed> {
-  node = new gtk.Fixed();
+export default class View extends GtkContainerElement<Gtk.Fixed> {
+  node = new Gtk.Fixed();
 
   layoutChildren() {
     super.layoutChildren();

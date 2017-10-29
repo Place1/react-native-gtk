@@ -1,12 +1,12 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 
 import GtkContainerElement from './GtkContainerElement';
 
-export default class ListBoxRow extends GtkContainerElement<gtk.ListBoxRow> {
+export default class ListBoxRow extends GtkContainerElement<Gtk.ListBoxRow> {
 
   static defaultStyle = {
     padding: 2,
   };
 
-  node = new gtk.ListBoxRow();
+  node = new Gtk.ListBoxRow();
 }

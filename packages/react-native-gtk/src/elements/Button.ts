@@ -1,27 +1,28 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 import { default as GtkElement, GtkProps } from './GtkElement';
+import * as signals from './util/signals';
 
 export interface ButtonProps extends GtkProps {
   label?: string;
   onClick?(): void;
 }
 
-export default class Button extends GtkElement<gtk.Button, ButtonProps> {
+export default class Button extends GtkElement<Gtk.Button, ButtonProps> {
 
-  node = new gtk.Button();
+  node = new Gtk.Button();
 
   constructor(props: ButtonProps) {
     super(props);
-    this.node.onSizeAllocate(this.onSizeAllocate);
+    signals.connect(this.node, 'size-allocate', this.onSizeAllocate); // TODO: disconnect
   }
 
-  private onSizeAllocate = (allocation: gtk.Allocation) => {
+  private onSizeAllocate = () => {
     const { width, height } = this.props.style!;
     if (width === undefined) {
-      this.layout.setWidth(allocation.getWidth());
+      this.layout.setWidth(this.node.getAllocatedWidth());
     }
     if (height === undefined) {
-      this.layout.setHeight(allocation.getHeight());
+      this.layout.setHeight(this.node.getAllocatedHeight());
     }
   }
 
@@ -32,7 +33,7 @@ export default class Button extends GtkElement<gtk.Button, ButtonProps> {
         break;
 
       case 'onClick':
-        this.node.onClick(value);
+        signals.connect(this.node, 'clicked', value);
         break;
     }
   }

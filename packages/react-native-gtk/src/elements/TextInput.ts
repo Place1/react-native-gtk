@@ -1,6 +1,7 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 
 import { default as GtkElement, GtkProps } from './GtkElement';
+import * as signals from './util/signals';
 
 export interface TextInputProps extends GtkProps {
   value?: string;
@@ -8,8 +9,8 @@ export interface TextInputProps extends GtkProps {
   onSubmitEditing?(): void;
 }
 
-export default class TextInput extends GtkElement<gtk.Entry, TextInputProps> {
-  node = new gtk.Entry();
+export default class TextInput extends GtkElement<Gtk.Entry, TextInputProps> {
+  node = new Gtk.Entry();
 
   setProp(prop: string, value: any) {
     switch (prop) {
@@ -18,11 +19,11 @@ export default class TextInput extends GtkElement<gtk.Entry, TextInputProps> {
         break;
 
       case 'onTextChanged':
-        this.node.onChange(() => value(this.node.getText()));
+        signals.connect(this.node, 'changed', () => value(this.node.text)); // TODO: disconnect
         break;
 
       case 'onSubmitEditing':
-        this.node.onActivate(value);
+        signals.connect(this.node, 'activate', value); // TODO: disconnect
         break;
     }
   }

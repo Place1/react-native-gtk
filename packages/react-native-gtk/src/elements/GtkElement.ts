@@ -1,4 +1,4 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 import { Node } from 'yoga-layout';
 
 import flex from '../flexbox/flex';
@@ -11,7 +11,7 @@ export interface GtkProps {
 }
 
 export default abstract class GtkElement<
-  NodeType extends gtk.Widget = gtk.Widget, Props extends GtkProps = GtkProps> {
+  NodeType extends Gtk.Widget = Gtk.Widget, Props extends GtkProps = GtkProps> {
 
   static defaultProps: GtkProps = {
     style: {},
@@ -95,10 +95,10 @@ export default abstract class GtkElement<
     // set widget size request
     let { width, height } = expandedStyles;
     if (width === undefined) {
-      width = -1; // -1 tell's GTK to unset the size request
+      width = -1; // -1 tell's Gtk to unset the size request
     }
     if (height === undefined) {
-      height = -1; // -1 tell's GTK to unset the size request
+      height = -1; // -1 tell's Gtk to unset the size request
     }
     this.node.setSizeRequest(width, height);
   }

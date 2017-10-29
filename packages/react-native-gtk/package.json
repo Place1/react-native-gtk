@@ -35,7 +35,7 @@
     "typescript": "^2.5.2"
   },
   "dependencies": {
-    "gtk-node": "^0.0.1-prerelease.10",
+    "node-gir": "0.1.0",
     "react-dom": "16.0.0-alpha.6",
     "yoga-layout": "1.6.0"
   },

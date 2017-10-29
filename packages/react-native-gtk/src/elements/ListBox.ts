@@ -1,7 +1,7 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 
 import GtkContainerElement from './GtkContainerElement';
 
-export default class ListBox extends GtkContainerElement<gtk.ListBox> {
-  node = new gtk.ListBox();
+export default class ListBox extends GtkContainerElement<Gtk.ListBox> {
+  node = new Gtk.ListBox();
 }

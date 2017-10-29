@@ -1,14 +1,14 @@
-import * as gtk from 'gtk-node';
+import { Gtk } from 'node-gir';
 import { Node } from 'yoga-layout';
 
 import { GtkElement } from './elements';
 
 export default class GtkContainer {
-  private window: gtk.Window;
+  private window: Gtk.Window;
   private layout = Node.createDefault();
   private children = new Array<GtkElement>();
 
-  constructor(window: gtk.Window) {
+  constructor(window: Gtk.Window) {
     this.window = window;
   }
 
