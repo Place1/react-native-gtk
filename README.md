@@ -62,3 +62,22 @@ If you have input but don't want to/can't contribute code just yet, here's some 
   and the direction the developers are taking!
 - Documentation: we haven't started our documentation efforts just yet but this will be a very
   important aspect of the project!
+
+
+## Roadmap
+react-native-gtk is currently in it's infancy and should be considered a work in progress!
+
+* There is still a lot of work to be done on the parent project, [node-gir](https://github.com/Place1/node-gir),
+to provide bullet proof GObject Introspection bindings for us to consume here.
+
+Many aspects of react-native-gtk are still being developed as well. The layout system (flexbox
+using YogaLayout) still requires a lot of work to make sure it's fast and 'works as expected'
+on-top of GTK. The architecture behind the intrinsic react elements could also benefit from
+some detailed research and design proposal/improvements!
+
+This project may also want to consider producing CLI tools to make bundling/packaging
+applications easier. A react-native-gtk application will have three primary environmental
+dependencies: node.js, gobject-introspection and GTK. How will our consumers (developers making
+desktop apps) convert their react-native-gtk code into an installable application for Mac, Windows
+and Linux? The process from _hello world_ to final app should be quick and easy! If you have suggestions
+on this topic then please open an issue or contribute to existing issues relating to!
