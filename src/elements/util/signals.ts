@@ -26,7 +26,7 @@ export function disconnectByName(instance: Gtk.Widget, signalName: string) {
   if (signalMap.has(signalName)) {
     instance.disconnect(signalMap.get(signalName) as SignalHandlerId);
   }
-  if (signalMap.size == 0) {
+  if (signalMap.size === 0) {
     signalInstanceMap.delete(instance);
   }
 }

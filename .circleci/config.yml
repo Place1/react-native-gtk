@@ -1,21 +1,14 @@
 version: 2
 
 jobs:
-  check:
+  build:
     docker:
       - image: node:8-stretch
     steps:
       - checkout
       - run: apt-get update
-      - run: apt-get install -y cmake xvfb # cmake for building gtk-node, xvfb for running headless tests (headless X11 server).
-      - run: apt-get install -y libgtk-3-dev libgtkmm-3.0-dev libsigc++-2.0-dev # system dependencies for gtk-node
+      - run: apt-get install -y xvfb # xvfb for running headless tests (headless X11 server).
+      - run: apt-get install -y libgirepository1.0-dev libgtk-3-dev # system dependencies for node-gir and GTK
       - run: npm install
-      - run: npm run bootstrap
       - run: npm run lint
       - run: xvfb-run -a npm run test
-
-workflows:
-  version: 2
-  check_test_build:
-    jobs:
-      - check
