@@ -77,7 +77,7 @@ some detailed research and design proposal/improvements!
 
 This project may also want to consider producing CLI tools to make bundling/packaging
 applications easier. A react-native-gtk application will have three primary environmental
-dependencies: node.js, gobject-introspection and GTK. How will our consumers (developers making
+dependencies: node.js, gobject-introspection and GTK. How will our consumers (primarily NodeJS/JavaScript developers making
 desktop apps) convert their react-native-gtk code into an installable application for Mac, Windows
 and Linux? The process from _hello world_ to final app should be quick and easy! If you have suggestions
 on this topic then please open an issue or contribute to existing issues relating to!
