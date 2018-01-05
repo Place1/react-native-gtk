@@ -4,7 +4,7 @@ import GtkContainer from './GtkContainer';
 import Renderer from './Reconciler';
 
 const window = new Gtk.Window({
-  type: Gtk.WindowType.toplevel,
+  type: Gtk.WindowType.TOPLEVEL,
   title: 'App',
 });
 const rootContainer = new GtkContainer(window);

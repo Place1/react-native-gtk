@@ -53,12 +53,19 @@ declare module 'node-gir' {
     }
 
     enum WindowType {
-      toplevel,
+      TOPLEVEL,
     }
 
     class Allocation {
       getWidth(): number;
       getHeight(): number;
+    }
+
+    class Rectangle {
+      width: number;
+      height: number;
+      x: number;
+      y: number;
     }
   }
 }

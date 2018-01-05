@@ -14,13 +14,13 @@ export default class Label extends GtkElement<Gtk.Label, LabelProps> {
     signals.connect(this.node, 'size-allocate', this.onSizeAllocate); // TODO: disconnect
   }
 
-  private onSizeAllocate = () => {
+  private onSizeAllocate = (_: any, rectangle: Gtk.Rectangle) => {
     const { width, height } = this.props.style!;
     if (width === undefined) {
-      this.layout.setWidth(this.node.getAllocatedWidth());
+      this.layout.setWidth(rectangle.width);
     }
     if (height === undefined) {
-      this.layout.setHeight(this.node.getAllocatedHeight());
+      this.layout.setHeight(rectangle.height);
     }
   }
 
