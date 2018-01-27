@@ -1,5 +1,5 @@
 import { Gtk } from 'node-gir';
-import { default as GtkElement, GtkProps } from './GtkElement';
+import { default as GtkElement } from './GtkElement';
 import * as signals from './util/signals';
 import { ButtonProperties } from 'react-native';
 

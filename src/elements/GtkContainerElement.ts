@@ -1,6 +1,6 @@
 import { Gtk } from 'node-gir';
 
-import { default as GtkElement, GtkProps } from './GtkElement';
+import { default as GtkElement } from './GtkElement';
 
 export interface GtkContainerProps {
   children?: JSX.Element | JSX.Element[];

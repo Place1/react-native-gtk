@@ -5,7 +5,7 @@ import flex from '../flexbox/flex';
 import StyleAttributes from '../style/StyleAttributes';
 import { expandStyleShorthands } from '../style/styleShorthands';
 import * as signals from './util/signals';
-import { StyleProp, ViewStyle } from 'react-native';
+import { ViewStyle } from 'react-native';
 import { Key } from 'react';
 
 export interface GtkProps {

@@ -1,7 +1,7 @@
 import { Gtk } from 'node-gir';
 
 import GtkContainerElement from './GtkContainerElement';
-import { ViewProperties } from 'react-native'
+import { ViewProperties } from 'react-native';
 
 export default class View extends GtkContainerElement<Gtk.Fixed, ViewProperties> {
 

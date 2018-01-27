@@ -32,6 +32,7 @@
     "react": "16.0.0-alpha.6",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
+    "tslint-config-prettier": "^1.6.0",
     "tslint-react": "^3.2.0",
     "typescript": "^2.5.2"
   },
