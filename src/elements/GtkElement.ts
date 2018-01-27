@@ -5,10 +5,12 @@ import flex from '../flexbox/flex';
 import StyleAttributes from '../style/StyleAttributes';
 import { expandStyleShorthands } from '../style/styleShorthands';
 import * as signals from './util/signals';
+import { StyleProp, ViewStyle } from 'react-native';
+import { Key } from 'react';
 
 export interface GtkProps {
-  key?: string | number;
-  style?: StyleAttributes;
+  key?: Key | null;
+  style?: ViewStyle;
 }
 
 export default abstract class GtkElement<NodeType extends Gtk.Widget = Gtk.Widget, Props = {}> {
@@ -17,7 +19,7 @@ export default abstract class GtkElement<NodeType extends Gtk.Widget = Gtk.Widge
     style: {},
   };
 
-  static defaultStyle: StyleAttributes = {};
+  static defaultStyle: Partial<GtkProps['style']> = {};
 
   abstract node: NodeType;
   props: Props & GtkProps;

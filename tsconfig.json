@@ -5,9 +5,10 @@
     "module": "commonjs",
     "jsx": "react",
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "skipLibCheck": true
   },
   "exclude": [
-    "node_modules/"
+    "node_modules"
   ]
 }

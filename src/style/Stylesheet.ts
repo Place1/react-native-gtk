@@ -1,10 +1,7 @@
 import StyleAttributes from './StyleAttributes';
+import { StyleSheet, RegisteredStyle } from 'react-native';
 
-export interface Styles {
-  [key: string]: StyleAttributes;
-}
-
-export function create(styles: Styles) {
+export function create<T extends StyleSheet.NamedStyles<T>>(styles: T): {[P in keyof T]: RegisteredStyle<T[P]>} {
   // dummy implementation
   return styles;
 }

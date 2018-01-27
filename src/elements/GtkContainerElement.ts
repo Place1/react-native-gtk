@@ -2,8 +2,12 @@ import { Gtk } from 'node-gir';
 
 import { default as GtkElement, GtkProps } from './GtkElement';
 
+export interface GtkContainerProps {
+  children?: JSX.Element | JSX.Element[];
+}
+
 export default abstract class GtkContainerElement<NodeType extends Gtk.Container = Gtk.Container, Props = {}>
-  extends GtkElement<NodeType, Props> {
+  extends GtkElement<NodeType, Props & GtkContainerProps> {
 
   abstract node: NodeType;
 
