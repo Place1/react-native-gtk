@@ -11,17 +11,16 @@ export interface GtkProps {
   style?: StyleAttributes;
 }
 
-export default abstract class GtkElement<
-  NodeType extends Gtk.Widget = Gtk.Widget, Props extends GtkProps = GtkProps> {
+export default abstract class GtkElement<NodeType extends Gtk.Widget = Gtk.Widget, Props = {}> {
 
-  static defaultProps: GtkProps = {
+  static defaultProps: GtkProps & GtkProps = {
     style: {},
   };
 
   static defaultStyle: StyleAttributes = {};
 
   abstract node: NodeType;
-  props: Props;
+  props: Props & GtkProps;
   children = new Array<GtkElement>();
   layout: Node = Node.createDefault();
 

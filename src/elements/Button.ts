@@ -1,17 +1,14 @@
 import { Gtk } from 'node-gir';
 import { default as GtkElement, GtkProps } from './GtkElement';
 import * as signals from './util/signals';
+import { ButtonProperties } from 'react-native';
 
-export interface ButtonProps extends GtkProps {
-  label?: string;
-  onClick?(): void;
-}
 
-export default class Button extends GtkElement<Gtk.Button, ButtonProps> {
+export default class Button extends GtkElement<Gtk.Button, ButtonProperties> {
 
   node = new Gtk.Button();
 
-  constructor(props: ButtonProps) {
+  constructor(props: ButtonProperties) {
     super(props);
     signals.connect(this.node, 'size-allocate', this.onSizeAllocate); // TODO: disconnect
   }
@@ -28,11 +25,11 @@ export default class Button extends GtkElement<Gtk.Button, ButtonProps> {
 
   setProp(prop: string, value: any) {
     switch (prop) {
-      case 'label':
+      case 'title':
         this.node.setLabel(value);
         break;
 
-      case 'onClick':
+      case 'onPress':
         signals.connect(this.node, 'clicked', value);
         break;
     }

@@ -61,8 +61,8 @@ class App extends React.Component<{}, State> {
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Label text={todo.title} />
                 <Button
-                  label="X"
-                  onClick={() => this.removeTodo(i)}
+                  title="X"
+                  onPress={() => this.removeTodo(i)}
                 />
               </View>
             </ListBoxRow>
@@ -77,8 +77,8 @@ class App extends React.Component<{}, State> {
           />
           <Button
             style={{ height: 50, width: 70, marginLeft: 10 }}
-            label="Add Todo"
-            onClick={this.createTodo}
+            title="Add Todo"
+            onPress={this.createTodo}
           />
         </View>
       </View>
