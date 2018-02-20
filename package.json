@@ -16,10 +16,11 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "test": "jest",
-    "lint": "tslint 'src/**/*.{ts,tsx}' --project ./",
+    "test": "node node_modules/jest/bin/jest",
+    "lint": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --project ./",
+    "lint:fix": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --fix --project ./",
     "build": "npm run clean && tsc",
-    "example": "ts-node example/TodoApp.tsx",
+    "example": "node node_modules/ts-node/dist/bin example/TodoApp.tsx",
     "clean": "rm -r ./dist || true"
   },
   "devDependencies": {
