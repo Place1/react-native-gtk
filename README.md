@@ -1,5 +1,7 @@
 # React Native GTK (WIP)
 [![CircleCI](https://circleci.com/gh/Place1/react-native-gtk/tree/master.svg?style=shield)](https://circleci.com/gh/Place1/react-native-gtk/tree/master)
+[![npm](https://img.shields.io/npm/v/react-native-gtk.svg?style=flat-square)](https://www.npmjs.com/package/react-native-gtk)
+[![npm](https://img.shields.io/npm/dt/react-native-gtk.svg?style=flat-square)](https://www.npmjs.com/package/react-native-gtk)
 
 React Native GTK allows developers to write ReactJS apps for desktop with native UI elements!
 
