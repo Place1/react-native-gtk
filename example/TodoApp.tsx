@@ -38,6 +38,7 @@ class App extends React.Component<{}, State> {
       };
       this.setState({
         todos: [...todos, newTodo],
+        draftTodo: '',
       });
     }
   }
