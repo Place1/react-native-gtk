@@ -18,14 +18,14 @@ npm test
 ```
 
 ## Examples
-There are example applications in the `examples/` directory. You can run any of these examples
+There are example applications in the `example/` directory. You can run any of these examples
 with the following command:
 ```
-./node_modules/.bin/ts-node ./examples/<file>.tsx
+./node_modules/.bin/ts-node ./example/<file>.tsx
 
 # e.g. running the todo app
 
-./node_modules/.bin/ts-node ./examples/TodoApp.tsx
+./node_modules/.bin/ts-node ./example/TodoApp.tsx
 ```
 
 ## Debug / develop the GI Bindings
@@ -59,7 +59,7 @@ Here are some helpful tips for code contributors:
 - Open your pull request early, even if you're not done so others can provide input/feedback!
 
 If you have input but don't want to/can't contribute code just yet, here's some other options:
-- Open issues to track bug's you've found using react-native-gtk
+- Open issues to track bugs you've found using react-native-gtk
 - Open issues to contribute your thoughts/suggestions/questions about the future of the package
   and the direction the developers are taking!
 - Documentation: we haven't started our documentation efforts just yet but this will be a very
@@ -67,7 +67,7 @@ If you have input but don't want to/can't contribute code just yet, here's some 
 
 
 ## Roadmap
-react-native-gtk is currently in it's infancy and should be considered a work in progress!
+react-native-gtk is currently in its infancy and should be considered a work in progress!
 
 * There is still a lot of work to be done on the parent project, [node-gir](https://github.com/Place1/node-gir),
 to provide bullet proof GObject Introspection bindings for us to consume here.
