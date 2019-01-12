@@ -1,3 +1,5 @@
+# Abandoned. I recommend looking at Proton Native instead: https://github.com/kusti8/proton-native
+
 # React Native GTK (WIP)
 [![CircleCI](https://circleci.com/gh/Place1/react-native-gtk/tree/master.svg?style=shield)](https://circleci.com/gh/Place1/react-native-gtk/tree/master)
 [![npm](https://img.shields.io/npm/v/react-native-gtk.svg?style=flat-square)](https://www.npmjs.com/package/react-native-gtk)
